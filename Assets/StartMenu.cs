@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MainMenuButtons : MonoBehaviour {
+public class StartMenu : MonoBehaviour {
 	
 	string username;
-	public UnityEngine.UI.InputField inputUsername;
 	public UnityEngine.UI.Text textUsername;
+	public UnityEngine.UI.InputField inputUsername;
 
 	// Use this for initialization
 	void Start () {
-		
+	
 	}
 	
 	// Update is called once per frame
@@ -17,19 +17,18 @@ public class MainMenuButtons : MonoBehaviour {
 		//username = inputUsername.text;
 		//textUsername.text = username;
 	}
-
-	public void StartGame () {
-		Application.LoadLevel (1);
-	}
-
-	public void QuitGame () {
-		//Debug.Log ("Quit");
-		Application.Quit ();
+	
+	public void RandomUsername () {
+		inputUsername.text = "Fahad";
 	}
 	
-	public void UsernameConfirm () {
+	public void ConfirmUsername () {
 		username = inputUsername.text;
 		textUsername.text = username;
 		//inputUsername.enabled = false;//can only set once
+	}
+	
+	public void Back () {
+		Application.LoadLevel (0);
 	}
 }
