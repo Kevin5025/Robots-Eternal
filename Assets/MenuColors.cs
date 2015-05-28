@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class MenuColors : MonoBehaviour {
 
+	public static MenuColors menuColors;//accessible from anywhere without doing Gameobject.Find()
+
 	static float normalColorPrimary = 0.875f;
 	static float normalColorSecondary = 0.21875f;
 	static float highlightedColorPrimary = 1f;
@@ -22,7 +24,12 @@ public class MenuColors : MonoBehaviour {
 	public static ColorBlock buttonMagenta = ColorBlock.defaultColorBlock;
 
 	void Awake () {
-		DontDestroyOnLoad (this);
+		if (menuColors == null) {//like a singleton
+			DontDestroyOnLoad (gameObject);
+			menuColors = this;
+		} else { //if (menuColors != null)
+			Destroy(gameObject);
+		}
 	}
 
 	// Use this for initialization
