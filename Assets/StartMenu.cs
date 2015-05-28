@@ -4,12 +4,24 @@ using System.Collections;
 public class StartMenu : MonoBehaviour {
 	
 	string username;
-	public UnityEngine.UI.Text textUsername;
+	public UnityEngine.UI.Button newUsername;
+	public UnityEngine.UI.Text textNewUsername;
 	public UnityEngine.UI.InputField inputUsername;
+	public UnityEngine.UI.Button confirmUsername;
+	public UnityEngine.UI.Button randomUsername;
+	public UnityEngine.UI.Button back;
 
 	// Use this for initialization
 	void Start () {
-	
+		username = "Fahad";
+
+		newUsername.colors = MenuColors.buttonGreen;
+		back.colors = MenuColors.buttonRed;
+		
+		newUsername.onClick.AddListener (() => NewUsername());
+		confirmUsername.onClick.AddListener (() => ConfirmUsername());
+		randomUsername.onClick.AddListener (() => RandomUsername());
+		back.onClick.AddListener (() => Back());
 	}
 	
 	// Update is called once per frame
@@ -18,17 +30,21 @@ public class StartMenu : MonoBehaviour {
 		//textUsername.text = username;
 	}
 	
-	public void RandomUsername () {
-		inputUsername.text = "Fahad";
+	void NewUsername () {
+		
 	}
 	
-	public void ConfirmUsername () {
+	void ConfirmUsername () {
 		username = inputUsername.text;
-		textUsername.text = username;
+		textNewUsername.text = username;
 		//inputUsername.enabled = false;//can only set once
 	}
 	
-	public void Back () {
-		Application.LoadLevel (0);
+	void RandomUsername () {
+		inputUsername.text = "Fahad";
+	}
+	
+	void Back () {
+		Application.LoadLevel ("Main Menu");
 	}
 }
