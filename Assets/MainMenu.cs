@@ -4,25 +4,25 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
-	public Button createAccount;
-	public Button manageAccounts;
-	public Button instructions;
-	public Button credits;
-	public Button quitGame;
+	public Button createAccountButton;
+	public Button manageAccountsButton;
+	public Button instructionsButton;
+	public Button creditsButton;
+	public Button quitGameButton;
 
 	// Use this for initialization
 	void Start () {
-		createAccount.colors = MenuColors.buttonYellow;
-		manageAccounts.colors = MenuColors.buttonYellow;
-		instructions.colors = MenuColors.buttonYellow;
-		credits.colors = MenuColors.buttonYellow;
-		quitGame.colors = MenuColors.buttonRed;
+		createAccountButton.colors = MenuColors.buttonYellow;
+		manageAccountsButton.colors = MenuColors.buttonYellow;
+		instructionsButton.colors = MenuColors.buttonYellow;
+		creditsButton.colors = MenuColors.buttonYellow;
+		quitGameButton.colors = MenuColors.buttonRed;
 
-		createAccount.onClick.AddListener (() => CreateAccount());
-		manageAccounts.onClick.AddListener (() => ManageAccounts());
-		instructions.onClick.AddListener (() => Instructions());
-		credits.onClick.AddListener (() => Credits());
-		quitGame.onClick.AddListener (() => QuitGame());
+		createAccountButton.onClick.AddListener (() => CreateAccount());
+		manageAccountsButton.onClick.AddListener (() => ManageAccounts());
+		instructionsButton.onClick.AddListener (() => Instructions());
+		creditsButton.onClick.AddListener (() => Credits());
+		quitGameButton.onClick.AddListener (() => QuitGame());
 	}
 	
 	// Update is called once per frame

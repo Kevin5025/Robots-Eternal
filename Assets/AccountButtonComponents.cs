@@ -4,7 +4,7 @@ using System.Collections;
 
 public class AccountButtonComponents : MonoBehaviour {
 
-	public Button accountButton;
+	//public Button accountButton;
 	public Text textUsername;
 
 	// Use this for initialization

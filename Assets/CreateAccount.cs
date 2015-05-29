@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class CreateAccount : MonoBehaviour {
 
-	public Button saveAccount;//need to fix all these names and reassign in editor
-	public Image newUsername;
-	public Text textNewUsername;
-	public InputField inputUsername;
-	public Button confirmUsername;
-	public Button randomUsername;
-	public Button back;
+	public Button saveAccountButton;//need to fix all these names and reassign in editor
+	public Image usernameImage;
+	public Text usernameText;
+	public InputField usernameInputField;
+	public Button confirmUsernameButton;
+	public Button randomUsernameButton;
+	public Button backButton;
 
 	// Use this for initialization
 	void Start () {
@@ -18,17 +18,17 @@ public class CreateAccount : MonoBehaviour {
 		//textNewUsername.text = PlayerPrefs.GetString ("username");
 		AccountManager.account = new Account ();
 
-		textNewUsername.text = "Fahad";//default username
+		usernameText.text = "Fahad";//default username
 
-		saveAccount.colors = MenuColors.buttonGreen;
-		newUsername.color = MenuColors.buttonWhite.disabledColor;
-		inputUsername.colors = MenuColors.buttonCyan;
-		back.colors = MenuColors.buttonRed;
+		saveAccountButton.colors = MenuColors.buttonMagenta;
+		usernameImage.color = MenuColors.buttonWhite.disabledColor;
+		usernameInputField.colors = MenuColors.buttonCyan;
+		backButton.colors = MenuColors.buttonRed;
 		
-		saveAccount.onClick.AddListener (() => SaveAccount());
-		confirmUsername.onClick.AddListener (() => ConfirmUsername());
-		randomUsername.onClick.AddListener (() => RandomUsername());
-		back.onClick.AddListener (() => Back());
+		saveAccountButton.onClick.AddListener (() => SaveAccount());
+		confirmUsernameButton.onClick.AddListener (() => ConfirmUsername());
+		randomUsernameButton.onClick.AddListener (() => RandomUsername());
+		backButton.onClick.AddListener (() => Back());
 	}
 	
 	// Update is called once per frame
@@ -39,22 +39,24 @@ public class CreateAccount : MonoBehaviour {
 	
 	void SaveAccount () {
 		//need to check if username already exists
-		AccountManager.account.username = textNewUsername.text;
+		AccountManager.account.username = usernameText.text;
 
-		AccountManager.usernames.Add (AccountManager.account.username);
+		if (!AccountManager.usernames.Contains (AccountManager.account.username)) {
+			AccountManager.usernames.Add (AccountManager.account.username);
+		}
 		AccountManager.accountManager.SaveAccount ();
 		AccountManager.accountManager.SaveUsernames ();
 		//PlayerPrefs.DeleteKey ("username");
-		PlayerPrefs.DeleteAll ();
+		//PlayerPrefs.DeleteAll ();
 	}
 	
 	void ConfirmUsername () {
-		textNewUsername.text = inputUsername.text;
+		usernameText.text = usernameInputField.text;
 		//inputUsername.enabled = false;//then can only set once
 	}
 	
 	void RandomUsername () {
-		inputUsername.text = "Fahad";
+		usernameInputField.text = "Fahad";
 	}
 	
 	void Back () {
