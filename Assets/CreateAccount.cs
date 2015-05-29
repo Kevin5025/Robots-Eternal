@@ -16,13 +16,13 @@ public class CreateAccount : MonoBehaviour {
 	void Start () {
 		//PlayerPrefs.SetString ("username", "Fahad");
 		//textNewUsername.text = PlayerPrefs.GetString ("username");
-		AccountManager.account = new Account ();
-
 		usernameText.text = "Fahad";//default username
 
 		saveAccountButton.colors = MenuColors.buttonMagenta;
 		usernameImage.color = MenuColors.buttonWhite.disabledColor;
 		usernameInputField.colors = MenuColors.buttonCyan;
+		confirmUsernameButton.colors = MenuColors.buttonWhite;
+		randomUsernameButton.colors = MenuColors.buttonWhite;
 		backButton.colors = MenuColors.buttonRed;
 		
 		saveAccountButton.onClick.AddListener (() => SaveAccount());
@@ -39,13 +39,16 @@ public class CreateAccount : MonoBehaviour {
 	
 	void SaveAccount () {
 		//need to check if username already exists
-		AccountManager.account.username = usernameText.text;
+		AccountManager.account = new Account ();
 
-		if (!AccountManager.usernames.Contains (AccountManager.account.username)) {
-			AccountManager.usernames.Add (AccountManager.account.username);
+		AccountManager.account.username = usernameText.text;
+		int keyNumber = 0;
+		while (AccountManager.keys.Contains (AccountManager.account.username + keyNumber)) {
+			keyNumber++;
 		}
-		AccountManager.accountManager.SaveAccount ();
-		AccountManager.accountManager.SaveUsernames ();
+		AccountManager.keys.Add (AccountManager.account.username + keyNumber);
+		AccountManager.accountManager.SaveAccount (AccountManager.account.username + keyNumber);
+		AccountManager.accountManager.SaveKeys ();
 		//PlayerPrefs.DeleteKey ("username");
 		//PlayerPrefs.DeleteAll ();
 	}

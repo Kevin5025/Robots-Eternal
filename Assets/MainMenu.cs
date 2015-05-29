@@ -4,32 +4,39 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
+	public Button selectLevelButton;
 	public Button createAccountButton;
 	public Button manageAccountsButton;
-	public Button instructionsButton;
-	public Button creditsButton;
+	public Button readInstructionsButton;
+	public Button viewCreditsButton;
 	public Button quitGameButton;
 
 	// Use this for initialization
 	void Start () {
+		selectLevelButton.colors = MenuColors.buttonGreen;
 		createAccountButton.colors = MenuColors.buttonYellow;
 		manageAccountsButton.colors = MenuColors.buttonYellow;
-		instructionsButton.colors = MenuColors.buttonYellow;
-		creditsButton.colors = MenuColors.buttonYellow;
+		readInstructionsButton.colors = MenuColors.buttonYellow;
+		viewCreditsButton.colors = MenuColors.buttonYellow;
 		quitGameButton.colors = MenuColors.buttonRed;
 
-		createAccountButton.onClick.AddListener (() => CreateAccount());
-		manageAccountsButton.onClick.AddListener (() => ManageAccounts());
-		instructionsButton.onClick.AddListener (() => Instructions());
-		creditsButton.onClick.AddListener (() => Credits());
-		quitGameButton.onClick.AddListener (() => QuitGame());
+		selectLevelButton.onClick.AddListener (() => SelectLevel ());
+		createAccountButton.onClick.AddListener (() => CreateAccount ());
+		manageAccountsButton.onClick.AddListener (() => ManageAccounts ());
+		readInstructionsButton.onClick.AddListener (() => ReadInstructions ());
+		viewCreditsButton.onClick.AddListener (() => ViewCredits ());
+		quitGameButton.onClick.AddListener (() => QuitGame ());
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
-	
+
+	void SelectLevel () {
+		Application.LoadLevel ("Select Level");
+	}
+
 	void CreateAccount () {
 		Application.LoadLevel ("Create Account");
 	}
@@ -38,11 +45,11 @@ public class MainMenu : MonoBehaviour {
 		Application.LoadLevel ("Manage Accounts");
 	}
 	
-	void Instructions () {
+	void ReadInstructions () {
 		Application.LoadLevel ("Instructions");
 	}
 	
-	void Credits () {
+	void ViewCredits () {
 		Application.LoadLevel ("Credits");
 	}
 	

@@ -9,7 +9,7 @@ public class AccountManager : MonoBehaviour {
 
 	public static AccountManager accountManager;
 	public static Account account = null;
-	public static List<string> usernames;//accountUsernames
+	public static List<string> keys;
 
 	void Awake () {
 		if (accountManager == null) {//like a singleton
@@ -19,7 +19,7 @@ public class AccountManager : MonoBehaviour {
 			Destroy(gameObject);
 		}
 
-		LoadUsernames ();
+		LoadKeys ();
 	}
 
 	// Use this for initialization
@@ -32,44 +32,44 @@ public class AccountManager : MonoBehaviour {
 	
 	}
 
-	public void SaveAccount () {
+	public void SaveAccount (string key) {
 		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/_" + account.username + ".dat");
+		FileStream file = File.Create (Application.persistentDataPath + "/_" + key + ".dat");
 		bf.Serialize (file, account);
 		file.Close ();
 		Debug.Log (Application.persistentDataPath);
 	}
 
-	public void LoadAccount () {
-		if (File.Exists (Application.persistentDataPath + "/_" + account.username + ".dat")){
+	public void LoadAccount (string key) {
+		if (File.Exists (Application.persistentDataPath + "/_" + key + ".dat")){
 			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/_" + account.username + ".dat", FileMode.Open);
+			FileStream file = File.Open (Application.persistentDataPath + "/_" + key + ".dat", FileMode.Open);
 			account = (Account) bf.Deserialize (file);
 			file.Close ();
 		}
 	}
+	
+	public void DeleteAccount (string key) {
+		if (File.Exists (Application.persistentDataPath + "/_" + key + ".dat")) {
+			File.Delete (Application.persistentDataPath + "/_" + key + ".dat");
+		}
+	}
 
-	public void SaveUsernames() {
+	public void SaveKeys() {
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/usernames.dat");
-		bf.Serialize (file, usernames);
+		bf.Serialize (file, keys);
 		file.Close ();
 	}
 
-	public void LoadUsernames () {
+	public void LoadKeys () {
 		if (File.Exists (Application.persistentDataPath + "/usernames.dat")) {
 			BinaryFormatter bf = new BinaryFormatter ();
 			FileStream file = File.Open (Application.persistentDataPath + "/usernames.dat", FileMode.Open);
-			usernames = (List<string>) bf.Deserialize (file);
+			keys = (List<string>) bf.Deserialize (file);
 			file.Close ();
 		} else {
-			usernames = new List<string>();
-		}
-	}
-	
-	public void Delete () {
-		if (File.Exists (Application.persistentDataPath + "/_" + account.username + ".dat")) {
-			File.Delete (Application.persistentDataPath + "/_" + account.username + ".dat");
+			keys = new List<string>();
 		}
 	}
 }
