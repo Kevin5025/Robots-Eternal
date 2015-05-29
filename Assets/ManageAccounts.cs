@@ -30,8 +30,8 @@ public class ManageAccounts : MonoBehaviour {
 			AccountButtonComponents accountButtonComponents = newAccountButton.GetComponent <AccountButtonComponents> ();
 			accountButtonComponents.accountButton.colors = MenuColors.buttonWhite;
 			accountButtonComponents.textUsername.text = AccountManager.account.username;
-			//string capturedKey = key;//directly passing key would pass key of the very last iteration
-			accountButtonComponents.accountButton.onClick.AddListener (() => Select (accountButtonComponents.textUsername.text, newAccountButton));
+			string capturedKey = key;//directly passing key would pass key of the very last iteration
+			accountButtonComponents.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton));
 		}
 
 		createButton.colors = MenuColors.buttonYellow;

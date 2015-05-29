@@ -37,7 +37,7 @@ public class AccountManager : MonoBehaviour {
 		FileStream file = File.Create (Application.persistentDataPath + "/_" + key + ".dat");
 		bf.Serialize (file, account);
 		file.Close ();
-		Debug.Log (Application.persistentDataPath);
+		//Debug.Log (Application.persistentDataPath);
 	}
 
 	public void LoadAccount (string key) {
