@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CreateAccount : MonoBehaviour {
 
-	public Button saveAccount;
+	public Button saveAccount;//need to fix all these names and reassign in editor
 	public Image newUsername;
 	public Text textNewUsername;
 	public InputField inputUsername;
@@ -18,11 +18,11 @@ public class CreateAccount : MonoBehaviour {
 		//textNewUsername.text = PlayerPrefs.GetString ("username");
 		AccountManager.account = new Account ();
 
-		inputUsername.text = "Fahad";//default username
-		textNewUsername.text = inputUsername.text;
+		textNewUsername.text = "Fahad";//default username
 
 		saveAccount.colors = MenuColors.buttonGreen;
 		newUsername.color = MenuColors.buttonWhite.disabledColor;
+		inputUsername.colors = MenuColors.buttonCyan;
 		back.colors = MenuColors.buttonRed;
 		
 		saveAccount.onClick.AddListener (() => SaveAccount());
