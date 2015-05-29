@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class CreateAccount : MonoBehaviour {
 
-	public Button startGame;//maybe change to createAccount later
+	public Button saveAccount;
 	public Image newUsername;
 	public Text textNewUsername;
 	public InputField inputUsername;
@@ -21,11 +21,11 @@ public class CreateAccount : MonoBehaviour {
 		inputUsername.text = "Fahad";//default username
 		textNewUsername.text = inputUsername.text;
 
-		startGame.colors = MenuColors.buttonGreen;
+		saveAccount.colors = MenuColors.buttonGreen;
 		newUsername.color = MenuColors.buttonWhite.disabledColor;
 		back.colors = MenuColors.buttonRed;
 		
-		startGame.onClick.AddListener (() => StartGame());
+		saveAccount.onClick.AddListener (() => SaveAccount());
 		confirmUsername.onClick.AddListener (() => ConfirmUsername());
 		randomUsername.onClick.AddListener (() => RandomUsername());
 		back.onClick.AddListener (() => Back());
@@ -37,7 +37,8 @@ public class CreateAccount : MonoBehaviour {
 		//textUsername.text = username;
 	}
 	
-	void StartGame () {
+	void SaveAccount () {
+		//need to check if username already exists
 		AccountManager.account.username = textNewUsername.text;
 
 		AccountManager.usernames.Add (AccountManager.account.username);

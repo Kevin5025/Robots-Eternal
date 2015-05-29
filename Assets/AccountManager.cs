@@ -32,7 +32,7 @@ public class AccountManager : MonoBehaviour {
 	
 	}
 
-	public void SaveAccount () {//https://unity3d.com/learn/tutorials/modules/beginner/live-training-archive/persistence-data-saving-loading
+	public void SaveAccount () {
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Create (Application.persistentDataPath + "/_" + account.username + ".dat");
 		bf.Serialize (file, account);

@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		createAccount.colors = MenuColors.buttonGreen;
+		createAccount.colors = MenuColors.buttonYellow;
 		manageAccounts.colors = MenuColors.buttonYellow;
 		instructions.colors = MenuColors.buttonYellow;
 		credits.colors = MenuColors.buttonYellow;
