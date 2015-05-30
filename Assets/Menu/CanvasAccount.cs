@@ -35,5 +35,6 @@ public class CanvasAccount : MonoBehaviour {
 
 	public void UpdateAccountPanel () {
 		accountUsernameText.text = AccountManager.accountManager.account.username;
+		accountDescriptionText.text = "Points: " + AccountManager.accountManager.account.points;
 	}
 }

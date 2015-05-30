@@ -78,4 +78,9 @@ public class AccountManager : MonoBehaviour {
 [Serializable]
 public class Account{//because shouldn't write Monobehavior to file
 	public string username;
+	public int points;
+
+	public Account () {
+		points = 0;
+	}
 }

@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class CreateAccount : MonoBehaviour {
 
-	public Button saveAccountButton;//need to fix all these names and reassign in editor
 	public Image usernameImage;
 	public Text usernameText;
 	public InputField usernameInputField;
 	public Button confirmUsernameButton;
 	public Button randomUsernameButton;
+	public Button saveAccountButton;
 	public Button mainMenuButton;
 
 	// Use this for initialization
@@ -48,6 +48,8 @@ public class CreateAccount : MonoBehaviour {
 		while (AccountManager.accountManager.keys.Contains (AccountManager.accountManager.account.username + keyNumber)) {
 			keyNumber++;
 		}
+		//AccountManager.accountManager.account.
+
 		AccountManager.accountManager.SaveAccount (AccountManager.accountManager.account.username + keyNumber);
 
 		AccountManager.accountManager.keys.Add (AccountManager.accountManager.account.username + keyNumber);
