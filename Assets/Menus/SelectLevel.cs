@@ -14,7 +14,8 @@ public class SelectLevel : MonoBehaviour {
 		
 		mainMenu.onClick.AddListener (() => MainMenu ());
 		for (int i=0; i<levels.Length; i++) {
-			levels[i].onClick.AddListener(() => LevelI (i));
+			int index = i;//capture
+			levels[i].onClick.AddListener(() => LevelI (index));
 		}
 	}
 	

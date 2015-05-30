@@ -33,6 +33,11 @@ public class CanvasAccount : MonoBehaviour {
 	
 	}
 
+	public void ResetAccountPanel () {
+		accountUsernameText.text = "Account";
+		accountDescriptionText.text = "You must create or load an account to view account information. \n\nYou must create or load an account to enable select level button. ";
+	}
+
 	public void UpdateAccountPanel () {
 		accountUsernameText.text = AccountManager.accountManager.account.username;
 		accountDescriptionText.text = "Points: " + AccountManager.accountManager.account.points;

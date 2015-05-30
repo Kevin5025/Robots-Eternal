@@ -84,6 +84,9 @@ public class ManageAccounts : MonoBehaviour {
 		AccountManager.accountManager.keys.Remove (selectedKey);
 		AccountManager.accountManager.SaveKeys ();
 		Destroy (selectedButtonAccount);
+		loadButton.interactable = false;
+		deleteButton.interactable = false;
+		CanvasAccount.accountCanvas.ResetAccountPanel ();
 	}
 	
 	void MainMenu () {
