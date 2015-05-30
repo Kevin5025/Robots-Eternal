@@ -60,7 +60,6 @@ public class CreateAccount : MonoBehaviour {
 	
 	void ConfirmUsername () {
 		usernameText.text = usernameInputField.text;
-		//inputUsername.enabled = false;//then can only set once
 	}
 	
 	void RandomUsername () {

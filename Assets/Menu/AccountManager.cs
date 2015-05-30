@@ -8,10 +8,11 @@ using System.IO;
 public class AccountManager : MonoBehaviour {
 
 	public static AccountManager accountManager;
-	public Account account = null;
+	public Account account;
 	public List<string> keys;//a real singleton would not have these as statics
 
 	void Awake () {
+		account = null;
 		if (accountManager == null) {//like a singleton
 			DontDestroyOnLoad (gameObject);
 			accountManager = this;
@@ -75,6 +76,6 @@ public class AccountManager : MonoBehaviour {
 }
 
 [Serializable]
-public class Account{//because don't write Monobehavior to file
+public class Account{//because shouldn't write Monobehavior to file
 	public string username;
 }
