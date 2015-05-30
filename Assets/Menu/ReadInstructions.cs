@@ -12,7 +12,7 @@ public class ReadInstructions : MonoBehaviour {
 
 		mainMenuButton.onClick.AddListener (() => MainMenu ());
 
-		AccountCanvas.accountCanvas.gameObject.SetActive (false);
+		CanvasAccount.accountCanvas.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame

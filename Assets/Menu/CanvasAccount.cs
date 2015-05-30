@@ -2,10 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class AccountCanvas : MonoBehaviour {
+public class CanvasAccount : MonoBehaviour {
 	
 	public Account selectedAccount;
-	public static AccountCanvas accountCanvas;
+	public static CanvasAccount accountCanvas;
 	public Button accountButton;
 	public Text accountUsernameText;
 	public Image accountImage;

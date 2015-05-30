@@ -30,7 +30,7 @@ public class CreateAccount : MonoBehaviour {
 		randomUsernameButton.onClick.AddListener (() => RandomUsername());
 		mainMenuButton.onClick.AddListener (() => MainMenu());
 
-		AccountCanvas.accountCanvas.gameObject.SetActive (false);
+		CanvasAccount.accountCanvas.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame
@@ -55,7 +55,7 @@ public class CreateAccount : MonoBehaviour {
 		//PlayerPrefs.DeleteKey ("username");
 		//PlayerPrefs.DeleteAll ();
 
-		AccountCanvas.accountCanvas.UpdateAccountPanel ();
+		CanvasAccount.accountCanvas.UpdateAccountPanel ();
 	}
 	
 	void ConfirmUsername () {

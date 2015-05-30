@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour {
 			selectLevelButton.interactable = false;
 		}
 
-		AccountCanvas.accountCanvas.gameObject.SetActive (true);
+		CanvasAccount.accountCanvas.gameObject.SetActive (true);
 	}
 	
 	// Update is called once per frame

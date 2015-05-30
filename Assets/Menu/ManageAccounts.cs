@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class ManageAccounts : MonoBehaviour {
 	
 	public Transform contentPanel;
-	public GameObject accountButton;
+	public GameObject buttonAccount;
 
 	public Button createButton;
 	public Button loadButton;
@@ -15,8 +15,8 @@ public class ManageAccounts : MonoBehaviour {
 	public Button mainMenuButton;
 
 	string selectedKey;
-	GameObject selectedAccountButton;
-	Button selectedAccountButtonComponent;
+	GameObject selectedButtonAccount;
+	Button selectedAccountButton;
 
 	// Use this for initialization
 	void Start () {
@@ -24,16 +24,16 @@ public class ManageAccounts : MonoBehaviour {
 
 		Account temp = AccountManager.accountManager.account;
 		foreach (string key in AccountManager.accountManager.keys) {
-			GameObject newAccountButton = Instantiate (accountButton) as GameObject;
+			GameObject newAccountButton = Instantiate (buttonAccount) as GameObject;
 			newAccountButton.transform.SetParent (contentPanel);
 
 			AccountManager.accountManager.LoadAccount (key);
 
-			AccountButtonComponents accountButtonComponents = newAccountButton.GetComponent <AccountButtonComponents> ();
-			accountButtonComponents.accountButton.colors = MenuColors.buttonWhite;
-			accountButtonComponents.textUsername.text = AccountManager.accountManager.account.username;
+			ButtonAccount accountButton = newAccountButton.GetComponent <ButtonAccount> ();
+			accountButton.accountButton.colors = MenuColors.buttonWhite;
+			accountButton.textUsername.text = AccountManager.accountManager.account.username;
 			string capturedKey = key;//directly passing key would pass key of the very last iteration
-			accountButtonComponents.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton, accountButtonComponents.accountButton));
+			accountButton.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton, accountButton.accountButton));
 		}
 		AccountManager.accountManager.account = temp;
 
@@ -56,15 +56,15 @@ public class ManageAccounts : MonoBehaviour {
 		
 	}
 
-	void Select (string key, GameObject accountButton, Button accountButtonComponent) {
-		if (selectedAccountButtonComponent != null) {
-			selectedAccountButtonComponent.colors = MenuColors.buttonWhite;
+	void Select (string key, GameObject buttonAccount, Button accountButton) {
+		if (selectedAccountButton != null) {
+			selectedAccountButton.colors = MenuColors.buttonWhite;
 		}
-		accountButtonComponent.colors = MenuColors.buttonCyan;
+		accountButton.colors = MenuColors.buttonCyan;
 
 		selectedKey = key;
+		selectedButtonAccount = buttonAccount;
 		selectedAccountButton = accountButton;
-		selectedAccountButtonComponent = accountButtonComponent;
 		
 		loadButton.interactable = true;
 		deleteButton.interactable = true;
@@ -76,14 +76,14 @@ public class ManageAccounts : MonoBehaviour {
 	
 	void Load () {
 		AccountManager.accountManager.LoadAccount (selectedKey);
-		AccountCanvas.accountCanvas.UpdateAccountPanel ();
+		CanvasAccount.accountCanvas.UpdateAccountPanel ();
 	}
 	
 	void Delete () {
 		AccountManager.accountManager.DeleteAccount (selectedKey);
 		AccountManager.accountManager.keys.Remove (selectedKey);
 		AccountManager.accountManager.SaveKeys ();
-		Destroy (selectedAccountButton);
+		Destroy (selectedButtonAccount);
 	}
 	
 	void MainMenu () {
