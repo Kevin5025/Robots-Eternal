@@ -15,13 +15,13 @@ public class MenuColors : MonoBehaviour {
 	static float disabledColorPrimary = 0.5f;
 	static float disabledColorSecondary = 0.375f;
 
-	public static ColorBlock buttonWhite = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonRed = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonYellow = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonGreen = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonCyan = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonBlue = ColorBlock.defaultColorBlock;
-	public static ColorBlock buttonMagenta = ColorBlock.defaultColorBlock;
+	public static ColorBlock whiteColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock redColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock yellowColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock greenColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock cyanColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock blueColor = ColorBlock.defaultColorBlock;
+	public static ColorBlock magentaColor = ColorBlock.defaultColorBlock;
 
 	void Awake () {
 		if (menuColors == null) {//like a singleton
@@ -34,40 +34,40 @@ public class MenuColors : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		buttonWhite.normalColor = new Color (normalColorPrimary, normalColorPrimary, normalColorPrimary);
-		buttonWhite.highlightedColor = new Color (highlightedColorPrimary, highlightedColorPrimary, highlightedColorPrimary);
-		buttonWhite.pressedColor = new Color (pressedColorPrimary, pressedColorPrimary, pressedColorPrimary); 
-		buttonWhite.disabledColor = new Color (disabledColorPrimary, disabledColorPrimary, disabledColorPrimary);
+		whiteColor.normalColor = new Color (normalColorPrimary, normalColorPrimary, normalColorPrimary);
+		whiteColor.highlightedColor = new Color (highlightedColorPrimary, highlightedColorPrimary, highlightedColorPrimary);
+		whiteColor.pressedColor = new Color (pressedColorPrimary, pressedColorPrimary, pressedColorPrimary); 
+		whiteColor.disabledColor = new Color (disabledColorPrimary, disabledColorPrimary, disabledColorPrimary);
 		
-		buttonRed.normalColor = new Color (normalColorPrimary, normalColorSecondary, normalColorSecondary);
-		buttonRed.highlightedColor = new Color (highlightedColorPrimary, highlightedColorSecondary, highlightedColorSecondary);
-		buttonRed.pressedColor = new Color (pressedColorPrimary, pressedColorSecondary, pressedColorSecondary); 
-		buttonRed.disabledColor = new Color (disabledColorPrimary, disabledColorSecondary, disabledColorSecondary);
+		redColor.normalColor = new Color (normalColorPrimary, normalColorSecondary, normalColorSecondary);
+		redColor.highlightedColor = new Color (highlightedColorPrimary, highlightedColorSecondary, highlightedColorSecondary);
+		redColor.pressedColor = new Color (pressedColorPrimary, pressedColorSecondary, pressedColorSecondary); 
+		redColor.disabledColor = new Color (disabledColorPrimary, disabledColorSecondary, disabledColorSecondary);
 		
-		buttonYellow.normalColor = new Color (normalColorPrimary, normalColorPrimary, normalColorSecondary);
-		buttonYellow.highlightedColor = new Color (highlightedColorPrimary, highlightedColorPrimary, highlightedColorSecondary);
-		buttonYellow.pressedColor = new Color (pressedColorPrimary, pressedColorPrimary, pressedColorSecondary); 
-		buttonYellow.disabledColor = new Color (disabledColorPrimary, disabledColorPrimary, disabledColorSecondary);
+		yellowColor.normalColor = new Color (normalColorPrimary, normalColorPrimary, normalColorSecondary);
+		yellowColor.highlightedColor = new Color (highlightedColorPrimary, highlightedColorPrimary, highlightedColorSecondary);
+		yellowColor.pressedColor = new Color (pressedColorPrimary, pressedColorPrimary, pressedColorSecondary); 
+		yellowColor.disabledColor = new Color (disabledColorPrimary, disabledColorPrimary, disabledColorSecondary);
 		
-		buttonGreen.normalColor = new Color (normalColorSecondary, normalColorPrimary, normalColorSecondary);
-		buttonGreen.highlightedColor = new Color (highlightedColorSecondary, highlightedColorPrimary, highlightedColorSecondary);
-		buttonGreen.pressedColor = new Color (pressedColorSecondary, pressedColorPrimary, pressedColorSecondary); 
-		buttonGreen.disabledColor = new Color (disabledColorSecondary, disabledColorPrimary, disabledColorSecondary);
+		greenColor.normalColor = new Color (normalColorSecondary, normalColorPrimary, normalColorSecondary);
+		greenColor.highlightedColor = new Color (highlightedColorSecondary, highlightedColorPrimary, highlightedColorSecondary);
+		greenColor.pressedColor = new Color (pressedColorSecondary, pressedColorPrimary, pressedColorSecondary); 
+		greenColor.disabledColor = new Color (disabledColorSecondary, disabledColorPrimary, disabledColorSecondary);
 		
-		buttonCyan.normalColor = new Color (normalColorSecondary, normalColorPrimary, normalColorPrimary);
-		buttonCyan.highlightedColor = new Color (highlightedColorSecondary, highlightedColorPrimary, highlightedColorPrimary);
-		buttonCyan.pressedColor = new Color (pressedColorSecondary, pressedColorPrimary, pressedColorPrimary); 
-		buttonCyan.disabledColor = new Color (disabledColorSecondary, disabledColorPrimary, disabledColorPrimary);
+		cyanColor.normalColor = new Color (normalColorSecondary, normalColorPrimary, normalColorPrimary);
+		cyanColor.highlightedColor = new Color (highlightedColorSecondary, highlightedColorPrimary, highlightedColorPrimary);
+		cyanColor.pressedColor = new Color (pressedColorSecondary, pressedColorPrimary, pressedColorPrimary); 
+		cyanColor.disabledColor = new Color (disabledColorSecondary, disabledColorPrimary, disabledColorPrimary);
 		
-		buttonBlue.normalColor = new Color (normalColorSecondary, normalColorSecondary, normalColorPrimary);
-		buttonBlue.highlightedColor = new Color (highlightedColorSecondary, highlightedColorSecondary, highlightedColorPrimary);
-		buttonBlue.pressedColor = new Color (pressedColorSecondary, pressedColorSecondary, pressedColorPrimary); 
-		buttonBlue.disabledColor = new Color (disabledColorSecondary, disabledColorSecondary, disabledColorPrimary);
+		blueColor.normalColor = new Color (normalColorSecondary, normalColorSecondary, normalColorPrimary);
+		blueColor.highlightedColor = new Color (highlightedColorSecondary, highlightedColorSecondary, highlightedColorPrimary);
+		blueColor.pressedColor = new Color (pressedColorSecondary, pressedColorSecondary, pressedColorPrimary); 
+		blueColor.disabledColor = new Color (disabledColorSecondary, disabledColorSecondary, disabledColorPrimary);
 		
-		buttonMagenta.normalColor = new Color (normalColorPrimary, normalColorSecondary, normalColorPrimary);
-		buttonMagenta.highlightedColor = new Color (highlightedColorPrimary, highlightedColorSecondary, highlightedColorPrimary);
-		buttonMagenta.pressedColor = new Color (pressedColorPrimary, pressedColorSecondary, pressedColorPrimary); 
-		buttonMagenta.disabledColor = new Color (disabledColorPrimary, disabledColorSecondary, disabledColorPrimary);
+		magentaColor.normalColor = new Color (normalColorPrimary, normalColorSecondary, normalColorPrimary);
+		magentaColor.highlightedColor = new Color (highlightedColorPrimary, highlightedColorSecondary, highlightedColorPrimary);
+		magentaColor.pressedColor = new Color (pressedColorPrimary, pressedColorSecondary, pressedColorPrimary); 
+		magentaColor.disabledColor = new Color (disabledColorPrimary, disabledColorSecondary, disabledColorPrimary);
 	}
 	
 	// Update is called once per frame

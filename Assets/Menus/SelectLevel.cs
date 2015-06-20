@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -9,8 +9,8 @@ public class SelectLevel : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mainMenu.colors = MenuColors.buttonRed;
-		levels[0].colors = MenuColors.buttonYellow;
+		mainMenu.colors = MenuColors.redColor;
+		levels[0].colors = MenuColors.yellowColor;
 		
 		mainMenu.onClick.AddListener (() => MainMenu ());
 		for (int i=0; i<levels.Length; i++) {
