@@ -71,7 +71,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 	}
 
 	void Create () {
-		Application.LoadLevel ("Create Account");
+		Application.LoadLevel ("Create Account Menu");
 	}
 	
 	void Load () {

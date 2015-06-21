@@ -5,12 +5,12 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;//we do it through C# serializer, not Unity serializer
 using System.IO;
 
-public class PersistenceManager : MonoBehaviour {
-
-	public static PersistenceManager persistenceManager;
+public class PersistenceManager : MonoBehaviour {//
+	
+	public static PersistenceManager persistenceManager;//
 	public Account account;
 	public List<string> keys;//a real singleton would not have these as statics
-
+	
 	void Awake () {
 		account = null;
 		if (persistenceManager == null) {//like a singleton
@@ -19,56 +19,61 @@ public class PersistenceManager : MonoBehaviour {
 		} else { //if (menuColors != null)
 			Destroy(gameObject);
 		}
-
+		
 		LoadKeys ();
 	}
-
+	
 	// Use this for initialization
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+	private string ObjectToString (object o) {
+		using (MemoryStream ms = new MemoryStream ()) {
+			new BinaryFormatter().Serialize(ms, o);
+			return Convert.ToBase64String(ms.ToArray());
+		}
+	}
 	
+	private object StringToObject (string s) {
+		byte[] bytes = Convert.FromBase64String (s);
+		using (MemoryStream ms = new MemoryStream (bytes, 0, bytes.Length)) {
+			ms.Write (bytes, 0, bytes.Length);
+			ms.Position = 0;
+			return new BinaryFormatter ().Deserialize (ms);
+		}
 	}
 
 	public void SaveAccount (string key) {
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/_" + key + ".dat");
-		bf.Serialize (file, account);
-		file.Close ();
-		//Debug.Log (Application.persistentDataPath);
+		PlayerPrefs.SetString ("_" + key, ObjectToString (account));
+		PlayerPrefs.Save ();
 	}
-
+	
 	public void LoadAccount (string key) {
-		if (File.Exists (Application.persistentDataPath + "/_" + key + ".dat")){
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/_" + key + ".dat", FileMode.Open);
-			account = (Account) bf.Deserialize (file);
-			file.Close ();
+		if (PlayerPrefs.HasKey ("_" + key)) {
+			account = (Account) StringToObject (PlayerPrefs.GetString ("_" + key));
 		}
 	}
 	
 	public void DeleteAccount (string key) {
-		if (File.Exists (Application.persistentDataPath + "/_" + key + ".dat")) {
-			File.Delete (Application.persistentDataPath + "/_" + key + ".dat");
+		if (PlayerPrefs.HasKey ("_" + key)) {
+			PlayerPrefs.DeleteKey ("_" + key);
 		}
 	}
-
+	
 	public void SaveKeys() {
-		BinaryFormatter bf = new BinaryFormatter ();
-		FileStream file = File.Create (Application.persistentDataPath + "/usernames.dat");
-		bf.Serialize (file, keys);
-		file.Close ();
+		PlayerPrefs.SetString ("keys", ObjectToString (keys));
+		PlayerPrefs.Save ();
 	}
-
+	
 	public void LoadKeys () {
-		if (File.Exists (Application.persistentDataPath + "/usernames.dat")) {
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/usernames.dat", FileMode.Open);
-			keys = (List<string>) bf.Deserialize (file);
-			file.Close ();
+		if (PlayerPrefs.HasKey ("keys")){
+			keys = (List<string>) StringToObject (PlayerPrefs.GetString ("keys"));
 		} else {
 			keys = new List<string>();
 		}
@@ -79,7 +84,7 @@ public class PersistenceManager : MonoBehaviour {
 public class Account{//because shouldn't write Monobehavior to file
 	public string username;
 	public int points;
-
+	
 	public Account () {
 		points = 0;
 	}

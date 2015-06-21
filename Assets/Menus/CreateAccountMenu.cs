@@ -44,11 +44,10 @@ public class CreateAccountMenu : MonoBehaviour {
 		PersistenceManager.persistenceManager.account = new Account ();
 
 		PersistenceManager.persistenceManager.account.username = usernameText.text;
-		int keyNumber = 0;
+		int keyNumber = 0;//key is arbitrary
 		while (PersistenceManager.persistenceManager.keys.Contains (PersistenceManager.persistenceManager.account.username + keyNumber)) {
 			keyNumber++;
 		}
-		//AccountManager.accountManager.account.
 
 		PersistenceManager.persistenceManager.SaveAccount (PersistenceManager.persistenceManager.account.username + keyNumber);
 
