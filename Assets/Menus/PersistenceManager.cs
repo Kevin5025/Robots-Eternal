@@ -9,10 +9,12 @@ public class PersistenceManager : MonoBehaviour {//
 	
 	public static PersistenceManager persistenceManager;//
 	public Account account;
+	public bool hasAccount;
 	public List<string> keys;//a real singleton would not have these as statics
 	
 	void Awake () {
-		account = null;
+		hasAccount = false;
+
 		if (persistenceManager == null) {//like a singleton
 			DontDestroyOnLoad (gameObject);
 			persistenceManager = this;

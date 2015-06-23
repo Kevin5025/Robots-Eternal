@@ -76,17 +76,22 @@ public class ManageAccountsMenu : MonoBehaviour {
 	
 	void Load () {
 		PersistenceManager.persistenceManager.LoadAccount (selectedKey);
+
 		AccountCanvas.accountCanvas.UpdateAccountPanel ();
+		PersistenceManager.persistenceManager.hasAccount = true;
 	}
 	
 	void Delete () {
 		PersistenceManager.persistenceManager.DeleteAccount (selectedKey);
 		PersistenceManager.persistenceManager.keys.Remove (selectedKey);
 		PersistenceManager.persistenceManager.SaveKeys ();
+
 		Destroy (selectedButtonAccount);
 		loadButton.interactable = false;
 		deleteButton.interactable = false;
+
 		AccountCanvas.accountCanvas.ResetAccountPanel ();
+		PersistenceManager.persistenceManager.hasAccount = false;
 	}
 	
 	void MainMenu () {

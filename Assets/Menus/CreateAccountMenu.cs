@@ -44,19 +44,17 @@ public class CreateAccountMenu : MonoBehaviour {
 		PersistenceManager.persistenceManager.account = new Account ();
 
 		PersistenceManager.persistenceManager.account.username = usernameText.text;
-		int keyNumber = 0;//key is arbitrary
+		int keyNumber = 0;//key is arbitrary - only for recognizing by eye
 		while (PersistenceManager.persistenceManager.keys.Contains (PersistenceManager.persistenceManager.account.username + keyNumber)) {
 			keyNumber++;
 		}
 
 		PersistenceManager.persistenceManager.SaveAccount (PersistenceManager.persistenceManager.account.username + keyNumber);
-
 		PersistenceManager.persistenceManager.keys.Add (PersistenceManager.persistenceManager.account.username + keyNumber);
 		PersistenceManager.persistenceManager.SaveKeys ();
-		//PlayerPrefs.DeleteKey ("username");
-		//PlayerPrefs.DeleteAll ();
 
 		AccountCanvas.accountCanvas.UpdateAccountPanel ();
+		PersistenceManager.persistenceManager.hasAccount = true;
 	}
 	
 	void ConfirmUsername () {

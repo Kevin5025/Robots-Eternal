@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour {
 		viewCreditsButton.onClick.AddListener (() => ViewCredits ());
 		quitGameButton.onClick.AddListener (() => QuitGame ());
 
-		if (PersistenceManager.persistenceManager.account == null) {
+		if (!PersistenceManager.persistenceManager.hasAccount) {
 			selectLevelButton.interactable = false;
 		}
 
