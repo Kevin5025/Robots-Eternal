@@ -49,6 +49,9 @@ public class ManageAccountsMenu : MonoBehaviour {
 		loadButton.onClick.AddListener (() => Load ());
 		deleteButton.onClick.AddListener (() => Delete ());
 		mainMenuButton.onClick.AddListener (() => MainMenu ());
+
+		AccountCanvas.accountCanvas.gameObject.SetActive (true);//probably unnecessary now
+		AccountCanvas.accountCanvas.GetComponent<Canvas> ().enabled = true;
 	}
 	
 	// Update is called once per frame

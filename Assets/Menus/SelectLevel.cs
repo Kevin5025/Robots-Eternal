@@ -17,6 +17,8 @@ public class SelectLevel : MonoBehaviour {
 			int index = i;//capture
 			levels[i].onClick.AddListener(() => LevelI (index));
 		}
+
+		AccountCanvas.accountCanvas.gameObject.SetActive (false);
 	}
 	
 	// Update is called once per frame

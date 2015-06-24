@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1ec02abb2432ac14d95d88346cc255c4
+timeCreated: 1435100250
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - pauseMenuCanvas: {fileID: 22390626, guid: 78a36d0de1a50c841870ade8d15335bf, type: 2}
+  - resumeButton: {fileID: 11411466, guid: 78a36d0de1a50c841870ade8d15335bf, type: 2}
+  - quitButton: {fileID: 11490734, guid: 78a36d0de1a50c841870ade8d15335bf, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
