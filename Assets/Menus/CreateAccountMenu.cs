@@ -27,7 +27,7 @@ public class CreateAccountMenu : MonoBehaviour {
 
 		//InputField.SubmitEvent usernameInputFieldSubmitEvent = new InputField.SubmitEvent ();
 		//usernameInputFieldSubmitEvent.AddListener (ConfirmUsername);
-		usernameInputField.onEndEdit.AddListener (ConfirmUsername);
+		usernameInputField.onEndEdit.AddListener (ConfirmUsername);//onSubmit doesn't with a lowercase 'o'
 		usernameInputField.characterValidation = InputField.CharacterValidation.Alphanumeric;
 		//confirmUsernameButton.onClick.AddListener (() => ConfirmUsername ());
 		randomUsernameButton.onClick.AddListener (() => RandomUsername ());

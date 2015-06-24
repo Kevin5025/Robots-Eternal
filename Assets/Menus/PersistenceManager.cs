@@ -13,14 +13,14 @@ public class PersistenceManager : MonoBehaviour {//
 	public List<string> keys;//a real singleton would not have these as statics
 	
 	void Awake () {
-		hasAccount = false;
-
 		if (persistenceManager == null) {//like a singleton
 			DontDestroyOnLoad (gameObject);
 			persistenceManager = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);
 		}
+
+		hasAccount = false;
 		
 		LoadKeys ();
 	}
