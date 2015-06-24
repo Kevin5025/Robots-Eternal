@@ -18,6 +18,9 @@ public class AccountCanvas : MonoBehaviour {
 		} else { //if (menuColors != null)
 			Destroy(gameObject);
 		}
+
+		//AccountCanvas.accountCanvas.GetComponent<Canvas> ().enabled = true;
+		gameObject.GetComponent<Canvas> ().enabled = true;
 	}
 
 	// Use this for initialization
