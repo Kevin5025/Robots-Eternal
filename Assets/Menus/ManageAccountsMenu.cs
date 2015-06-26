@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class ManageAccountsMenu : MonoBehaviour {
 	
 	public Transform contentPanel;
-	public GameObject buttonAccount;
+	public GameObject accountButtonStock;//prefab
 
 	public Button createButton;
 	public Button loadButton;
@@ -24,16 +24,16 @@ public class ManageAccountsMenu : MonoBehaviour {
 
 		Account temp = PersistenceManager.persistenceManager.account;
 		foreach (string key in PersistenceManager.persistenceManager.keys) {
-			GameObject newAccountButton = Instantiate (buttonAccount) as GameObject;
+			GameObject newAccountButton = Instantiate (accountButtonStock) as GameObject;
 			newAccountButton.transform.SetParent (contentPanel);
 
 			PersistenceManager.persistenceManager.LoadAccount (key);
 
-			AccountButtonStock accountButton = newAccountButton.GetComponent <AccountButtonStock> ();
-			accountButton.accountButton.colors = MenuColors.whiteColor;
-			accountButton.textUsername.text = PersistenceManager.persistenceManager.account.username;
+			AccountButtonStock newAccountButtonScript = newAccountButton.GetComponent <AccountButtonStock> ();
+			newAccountButtonScript.accountButton.colors = MenuColors.whiteColor;
+			newAccountButtonScript.textUsername.text = PersistenceManager.persistenceManager.account.username;
 			string capturedKey = key;//directly passing key would pass key of the very last iteration
-			accountButton.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton, accountButton.accountButton));
+			newAccountButtonScript.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton, newAccountButtonScript.accountButton));
 		}
 		PersistenceManager.persistenceManager.account = temp;
 
