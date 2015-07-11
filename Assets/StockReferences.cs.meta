@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c0b9b20e00b1ef148963392b9da35dc0
+timeCreated: 1436641976
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - circleSmall: {instanceID: 0}
+  - circleMedium: {instanceID: 0}
+  - circleLarge: {instanceID: 0}
+  - circleSmall2: {fileID: 158216, guid: 734bcd304e6422744be1f1dc35217504, type: 2}
+  - circleMedium2: {instanceID: 0}
+  - circleLarge2: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

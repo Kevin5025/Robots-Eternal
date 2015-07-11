@@ -5,12 +5,12 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;//we do it through C# serializer, not Unity serializer
 using System.IO;
 
-public class PersistenceManager : MonoBehaviour {//
+public class PersistenceManager : MonoBehaviour {
 	
-	public static PersistenceManager persistenceManager;//
+	public static PersistenceManager persistenceManager;
 	public Account account;
 	public bool hasAccount;
-	public List<string> keys;//a real singleton would not have these as statics
+	public List<string> keys;
 	
 	void Awake () {
 		if (persistenceManager == null) {//like a singleton
@@ -68,7 +68,7 @@ public class PersistenceManager : MonoBehaviour {//
 		}
 	}
 	
-	public void SaveKeys() {
+	public void SaveKeys () {
 		PlayerPrefs.SetString ("keys", ObjectToString (keys));
 		PlayerPrefs.Save ();
 	}
@@ -83,7 +83,7 @@ public class PersistenceManager : MonoBehaviour {//
 }
 
 [Serializable]
-public class Account{//because shouldn't write Monobehavior to file
+public class Account {//because shouldn't write Monobehavior to file
 	public string username;
 	public int points;
 	
