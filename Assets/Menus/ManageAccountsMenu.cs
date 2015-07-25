@@ -24,16 +24,16 @@ public class ManageAccountsMenu : MonoBehaviour {
 
 		Account temp = PersistenceManager.persistenceManager.account;
 		foreach (string key in PersistenceManager.persistenceManager.keys) {
-			GameObject newAccountButton = Instantiate (accountButtonStock) as GameObject;
-			newAccountButton.transform.SetParent (contentPanel);
+			GameObject accountButtonGameobject = Instantiate (accountButtonStock) as GameObject;
+			accountButtonGameobject.transform.SetParent (contentPanel);
 
 			PersistenceManager.persistenceManager.LoadAccount (key);
 
-			AccountButtonStock newAccountButtonScript = newAccountButton.GetComponent <AccountButtonStock> ();
-			newAccountButtonScript.accountButton.colors = MenuColors.whiteColor;
-			newAccountButtonScript.textUsername.text = PersistenceManager.persistenceManager.account.username;
+			AccountButton accountButton = accountButtonGameobject.GetComponent <AccountButton> ();
+			accountButton.accountButton.colors = MenuColors.whiteColor;
+			accountButton.textUsername.text = PersistenceManager.persistenceManager.account.username;
 			string capturedKey = key;//directly passing key would pass key of the very last iteration
-			newAccountButtonScript.accountButton.onClick.AddListener (() => Select (capturedKey, newAccountButton, newAccountButtonScript.accountButton));
+			accountButton.accountButton.onClick.AddListener (() => Select (capturedKey, accountButtonGameobject, accountButton.accountButton));
 		}
 		PersistenceManager.persistenceManager.account = temp;
 

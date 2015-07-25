@@ -7,20 +7,21 @@ public abstract class Entity : MonoBehaviour {
 	public float maxHealth;
 	public float mechanicalArmor;//will also have biochemical, electromagnetic, thermal, nuclear, etc. 
 	public bool eliminated;//aka dead
+
+	public enum Team {BLUE, RED};
+	public Team team;
 	
 	protected SpriteRenderer spriteRenderer;
 	protected float r; protected float g; protected float b;
 
 	protected virtual void Awake () {
-
+		spriteRenderer = gameObject.GetComponent<SpriteRenderer> ();
+		r = spriteRenderer.color.r; g = spriteRenderer.color.g; b = spriteRenderer.color.b;
 	}
 
 	// Use this for initialization
 	protected virtual void Start () {
 		eliminated = false;//how am I able to implement a virtual function?
-		
-		spriteRenderer = gameObject.GetComponent<SpriteRenderer> ();
-		r = spriteRenderer.color.r; g = spriteRenderer.color.g; b = spriteRenderer.color.b;
 	}
 	
 	// Update is called once per frame
@@ -40,7 +41,7 @@ public abstract class Entity : MonoBehaviour {
 	}
 
 	protected virtual IEnumerator Fade () {
-		spriteRenderer.color = new Color(r, g, b, 0.25f);
+		spriteRenderer.color = new Color(r, g, b, 0.25f);//instant fade
 		yield return new WaitForSeconds(1f);
 		Destroy (gameObject);
 	}

@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class AccountButtonStock : MonoBehaviour {
+public class AccountButton : MonoBehaviour {
 
 	public Button accountButton;
 	public Text textUsername;
