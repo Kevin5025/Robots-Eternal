@@ -24,7 +24,7 @@ public class Projectile : Entity {
 		base.Update ();
 		timer -= Time.deltaTime;
 		if (timer <= 0 || health <= 0) {
-			Die ();
+			Expire ();
 		}
 	}
 
@@ -32,7 +32,7 @@ public class Projectile : Entity {
 		Entity collisionGameObjectEntity = collision.gameObject.GetComponent<Entity> ();
 		if (collisionGameObjectEntity != null) {
 			collisionGameObjectEntity.takeDiscreteDamage(mechanicalDamage);
-			Die ();
+			Expire ();
 		}
 	}
 }

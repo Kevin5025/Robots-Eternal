@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class ManageAccountsMenu : MonoBehaviour {
 	
 	public Transform contentPanel;
-	public GameObject accountButtonStock;//prefab
+	public GameObject accountButtonGameObjectStock;//prefab
 
 	public Button createButton;
 	public Button loadButton;
@@ -24,7 +24,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 
 		Account temp = PersistenceManager.persistenceManager.account;
 		foreach (string key in PersistenceManager.persistenceManager.keys) {
-			GameObject accountButtonGameobject = Instantiate (accountButtonStock) as GameObject;
+			GameObject accountButtonGameobject = Instantiate (accountButtonGameObjectStock) as GameObject;
 			accountButtonGameobject.transform.SetParent (contentPanel);
 
 			PersistenceManager.persistenceManager.LoadAccount (key);

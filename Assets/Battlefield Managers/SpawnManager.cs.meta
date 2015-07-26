@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e3531e2ff270ccc4fbc68aae34192517
+timeCreated: 1437881111
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - spawnPointGameObjectStock: {fileID: 188806, guid: c2facddafa63f9a408bffd27a256a475,
+      type: 2}
+  - pentagonAgentGameObject: {fileID: 119858, guid: 8394d5308fea94b42b9de5bb0e62ce9f,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

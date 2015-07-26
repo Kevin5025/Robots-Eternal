@@ -7,15 +7,18 @@ public class Shoot : Ability {
 		base.Activate (casterTransform, casterAgent);
 
 		Vector3 head = casterTransform.TransformPoint (new Vector3 (0, casterAgent.radius));
-		GameObject projectileGameobject = (GameObject) GameObject.Instantiate (StockReferences.stockReferences.circleSmall2, head, casterTransform.rotation);
+		GameObject projectileGameObject = (GameObject) GameObject.Instantiate (StockReferences.stockReferences.circleSmall2, head, casterTransform.rotation);
 		Vector3 forward = casterTransform.TransformPoint (new Vector3 (0, 1));
-		projectileGameobject.GetComponent<Rigidbody2D> ().velocity = (forward - casterTransform.position) * casterAgent.area * 5;
-		projectileGameobject.AddComponent<Projectile> ();
+		projectileGameObject.GetComponent<Rigidbody2D> ().velocity = (forward - casterTransform.position) * casterAgent.area * 5;
+		projectileGameObject.AddComponent<Projectile> ();
+		projectileGameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "Projectiles";
 
 		if (casterAgent.team == Entity.Team.BLUE) {
-			projectileGameobject.layer = LayersManager.layersManager.blueProjectileLayer;
+			projectileGameObject.GetComponent<Projectile> ().team = Entity.Team.BLUE;
+			projectileGameObject.layer = LayersManager.layersManager.blueProjectileLayer;
 		} else if (casterAgent.team == Entity.Team.RED) {
-			projectileGameobject.layer = LayersManager.layersManager.redProjectileLayer;
+			projectileGameObject.GetComponent<Projectile> ().team = Entity.Team.RED;
+			projectileGameObject.layer = LayersManager.layersManager.redProjectileLayer;
 		}
 	}
 
