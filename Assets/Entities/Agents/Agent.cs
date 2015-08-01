@@ -18,6 +18,8 @@ public class Agent : Entity {//will be abstract <- shape <- class
 	protected float respawnTime;
 
 	public List<Ability> abilityList;
+	
+	private GameObject healthBarContainerGameObject;
 
 	protected override void Awake () {
 		base.Awake ();
@@ -52,6 +54,10 @@ public class Agent : Entity {//will be abstract <- shape <- class
 
 		abilityList = new List<Ability> ();
 		abilityList.Add (new Shoot());
+
+		healthBarContainerGameObject = (GameObject) Instantiate (HUDManager.hUDManager.healthBarContainerStock, new Vector2 (transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
+		healthBarContainerGameObject.GetComponentInChildren<ResourceBar> ().targetTransform = transform;
+		healthBarContainerGameObject.GetComponentInChildren<ResourceBar> ().targetEntity = this;
 	}
 	
 	// Update is called once per frame
@@ -91,6 +97,7 @@ public class Agent : Entity {//will be abstract <- shape <- class
 
 	protected IEnumerator Respawn () {
 		yield return new WaitForSeconds (respawnTime - fadeTime);
+		health = maxHealth;
 		expired = false; eliminated = false;
 		spriteRenderer.color = new Color (r, g, b, 1f);
 		gameObject.GetComponent<Collider2D> ().enabled = true;

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 52ef103dcebd81845ae9a14b6126c1de
+timeCreated: 1438462648
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - hUDCanvas: {fileID: 184600, guid: f135f007008bbb44eb81589c0abdae24, type: 2}
+  - healthBarContainerStock: {fileID: 156498, guid: 04dfa33e6a9d94e45b0a736558f47f6b,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

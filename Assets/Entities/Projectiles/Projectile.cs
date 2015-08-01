@@ -8,6 +8,7 @@ public class Projectile : Entity {
 
 	protected override void Awake () {
 		base.Awake ();
+		GetComponent<CircleCollider2D> ().enabled = false;
 	}
 
 	// Use this for initialization
@@ -17,6 +18,7 @@ public class Projectile : Entity {
 		health = maxHealth;
 		mechanicalDamage = 20f;
 		timer = 2f;
+		GetComponent<CircleCollider2D> ().enabled = true;
 	}
 	
 	// Update is called once per frame
