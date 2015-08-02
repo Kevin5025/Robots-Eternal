@@ -8,9 +8,10 @@ using System.IO;
 public class PersistenceManager : MonoBehaviour {
 	
 	public static PersistenceManager persistenceManager;
-	public Account account;
-	public bool hasAccount;
 	public List<string> keys;
+	public bool hasAccount;
+	public Account account;
+	public Settings settings;
 	
 	void Awake () {
 		if (persistenceManager == null) {//like a singleton
@@ -23,6 +24,7 @@ public class PersistenceManager : MonoBehaviour {
 		hasAccount = false;
 		
 		LoadKeys ();
+		LoadSettings ();
 	}
 	
 	// Use this for initialization
@@ -50,6 +52,19 @@ public class PersistenceManager : MonoBehaviour {
 			return new BinaryFormatter ().Deserialize (ms);
 		}
 	}
+	
+	public void SaveKeys () {
+		PlayerPrefs.SetString ("keys", ObjectToString (keys));
+		PlayerPrefs.Save ();
+	}
+	
+	public void LoadKeys () {
+		if (PlayerPrefs.HasKey ("keys")){
+			keys = (List<string>) StringToObject (PlayerPrefs.GetString ("keys"));
+		} else {
+			keys = new List<string>();
+		}
+	}
 
 	public void SaveAccount (string key) {
 		PlayerPrefs.SetString ("_" + key, ObjectToString (account));
@@ -67,17 +82,17 @@ public class PersistenceManager : MonoBehaviour {
 			PlayerPrefs.DeleteKey ("_" + key);
 		}
 	}
-	
-	public void SaveKeys () {
-		PlayerPrefs.SetString ("keys", ObjectToString (keys));
+
+	public void SaveSettings () {
+		PlayerPrefs.SetString ("settings", ObjectToString (settings));
 		PlayerPrefs.Save ();
 	}
-	
-	public void LoadKeys () {
-		if (PlayerPrefs.HasKey ("keys")){
-			keys = (List<string>) StringToObject (PlayerPrefs.GetString ("keys"));
+
+	public void LoadSettings () {
+		if (PlayerPrefs.HasKey ("settings")) {
+			settings = (Settings) StringToObject (PlayerPrefs.GetString ("settings"));
 		} else {
-			keys = new List<string>();
+			settings = new Settings();
 		}
 	}
 }
@@ -89,5 +104,16 @@ public class Account {//because shouldn't write Monobehavior to file
 	
 	public Account () {
 		points = 0;
+	}
+}
+
+[Serializable]
+public class Settings {
+	public int cameraScheme;
+	public int rotateScheme;
+
+	public Settings() {
+		cameraScheme = 0;
+		rotateScheme = 0;
 	}
 }

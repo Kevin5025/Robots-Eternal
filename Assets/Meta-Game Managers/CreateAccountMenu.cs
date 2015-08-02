@@ -17,11 +17,11 @@ public class CreateAccountMenu : MonoBehaviour {
 	void Start () {
 		//usernameText.text = "Default";//default username
 
-		saveAccountButton.colors = MenuColors.magentaColor;
 		usernameConfirmField.colors = MenuColors.cyanColor;
 		usernameInputField.colors = MenuColors.cyanColor;
 		//confirmUsernameButton.colors = MenuColors.whiteColor;
 		randomUsernameButton.colors = MenuColors.whiteColor;
+		saveAccountButton.colors = MenuColors.magentaColor;
 		manageAccountsButton.colors = MenuColors.redColor;
 		mainMenuButton.colors = MenuColors.redColor;
 

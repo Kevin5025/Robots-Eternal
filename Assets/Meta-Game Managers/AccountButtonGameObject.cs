@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class AccountButton : MonoBehaviour {
+public class AccountButtonGameObject : MonoBehaviour {
 
 	public Button accountButton;
 	public Text textUsername;

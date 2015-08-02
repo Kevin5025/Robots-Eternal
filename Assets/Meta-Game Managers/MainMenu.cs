@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour {
 	//public Button createAccountButton;
 	public Button manageAccountsButton;
 	public Button readInstructionsButton;
-	public Button selectOptionsButton;
+	public Button changeSettingsButton;
 	public Button viewCreditsButton;
 	public Button quitGameButton;
 
@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour {
 		//createAccountButton.colors = MenuColors.yellowColor;
 		manageAccountsButton.colors = MenuColors.yellowColor;
 		readInstructionsButton.colors = MenuColors.yellowColor;
-		selectOptionsButton.colors = MenuColors.yellowColor;
+		changeSettingsButton.colors = MenuColors.yellowColor;
 		viewCreditsButton.colors = MenuColors.yellowColor;
 		quitGameButton.colors = MenuColors.redColor;
 
@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
 		//createAccountButton.onClick.AddListener (() => CreateAccount ());
 		manageAccountsButton.onClick.AddListener (() => ManageAccounts ());
 		readInstructionsButton.onClick.AddListener (() => ReadInstructions ());
-		selectOptionsButton.onClick.AddListener (() => SelectOptions ());
+		changeSettingsButton.onClick.AddListener (() => ChangeSettings ());
 		viewCreditsButton.onClick.AddListener (() => ViewCredits ());
 		quitGameButton.onClick.AddListener (() => QuitGame ());
 
@@ -59,8 +59,8 @@ public class MainMenu : MonoBehaviour {
 		Application.LoadLevel ("Read Instructions Menu");
 	}
 
-	void SelectOptions () {
-		Application.LoadLevel ("Select Options Menu");
+	void ChangeSettings () {
+		Application.LoadLevel ("Change Settings Menu");
 	}
 	
 	void ViewCredits () {

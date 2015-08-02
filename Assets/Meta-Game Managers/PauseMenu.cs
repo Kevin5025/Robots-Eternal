@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour {
 
-	public PauseMenu pauseMenu;
+	public static PauseMenu pauseMenu;
 
 	public Canvas pauseMenuCanvas;
 	public Button resumeButton;
@@ -53,6 +53,7 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 	void Quit () {
-		Application.LoadLevel ("Main Menu");
+		PauseMenu.pauseMenu.gameObject.SetActive (false);
+		Application.LoadLevel ("Main Menu");//doesn't destroy everything
 	}
 }

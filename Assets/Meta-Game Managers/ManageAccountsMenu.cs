@@ -15,7 +15,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 	public Button mainMenuButton;
 
 	string selectedKey;
-	GameObject selectedButtonAccount;
+	GameObject selectedAccountButtonGameObject;//necessary for deleting off of list
 	Button selectedAccountButton;
 
 	// Use this for initialization
@@ -24,16 +24,16 @@ public class ManageAccountsMenu : MonoBehaviour {
 
 		Account temp = PersistenceManager.persistenceManager.account;
 		foreach (string key in PersistenceManager.persistenceManager.keys) {
-			GameObject accountButtonGameobject = Instantiate (accountButtonGameObjectStock) as GameObject;
-			accountButtonGameobject.transform.SetParent (contentPanel);
+			GameObject accountButtonGameObject = Instantiate (accountButtonGameObjectStock) as GameObject;
+			accountButtonGameObject.transform.SetParent (contentPanel);
 
 			PersistenceManager.persistenceManager.LoadAccount (key);
 
-			AccountButton accountButton = accountButtonGameobject.GetComponent <AccountButton> ();
+			AccountButtonGameObject accountButton = accountButtonGameObject.GetComponent <AccountButtonGameObject> ();
 			accountButton.accountButton.colors = MenuColors.whiteColor;
 			accountButton.textUsername.text = PersistenceManager.persistenceManager.account.username;
 			string capturedKey = key;//directly passing key would pass key of the very last iteration
-			accountButton.accountButton.onClick.AddListener (() => Select (capturedKey, accountButtonGameobject, accountButton.accountButton));
+			accountButton.accountButton.onClick.AddListener (() => Select (capturedKey, accountButtonGameObject, accountButton.accountButton));
 		}
 		PersistenceManager.persistenceManager.account = temp;
 
@@ -66,7 +66,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 		accountButton.colors = MenuColors.cyanColor;
 
 		selectedKey = key;
-		selectedButtonAccount = buttonAccount;
+		selectedAccountButtonGameObject = buttonAccount;
 		selectedAccountButton = accountButton;
 		
 		loadButton.interactable = true;
@@ -89,7 +89,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 		PersistenceManager.persistenceManager.keys.Remove (selectedKey);
 		PersistenceManager.persistenceManager.SaveKeys ();
 
-		Destroy (selectedButtonAccount);
+		Destroy (selectedAccountButtonGameObject);
 		loadButton.interactable = false;
 		deleteButton.interactable = false;
 

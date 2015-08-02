@@ -24,7 +24,12 @@ public class MainCamera : MonoBehaviour {
 	void Update () {
 		if (playerTransform) {
 			transform.position = new Vector3 (playerTransform.position.x, playerTransform.position.y, -10f);
-			transform.rotation = playerTransform.rotation;
+
+			if (Player.player.cameraScheme == 0) {
+				transform.rotation = Quaternion.identity;
+			} else if (Player.player.cameraScheme == 1) {
+				transform.rotation = playerTransform.rotation;
+			}
 		}
 	}
 }
