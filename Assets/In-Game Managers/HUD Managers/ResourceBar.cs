@@ -17,7 +17,10 @@ public class ResourceBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		healthBarContainerTransform.position = Camera.main.WorldToScreenPoint (new Vector2 (targetTransform.position.x, targetTransform.position.y + 0.6f));
+		//healthBarContainerTransform.position = Camera.main.WorldToScreenPoint (new Vector2 (targetTransform.position.x, targetTransform.position.y + 0.6f));
+		Vector3 forwardPosition = Camera.main.transform.TransformPoint (new Vector3 (0, 0.6f));
+		//Debug.Log (forwardPosition);//adds the camera's position, see Shoot class
+		healthBarContainerTransform.position = Camera.main.WorldToScreenPoint (targetTransform.position + forwardPosition - Camera.main.transform.position);
 		//resourceBarContainerTransform.rotation = targetTransform.rotation;//as if the Entity is still the parent
 		transform.localScale = new Vector3 (targetEntity.health / targetEntity.maxHealth, 1f, 1f);
 	}

@@ -25,15 +25,24 @@ public class Player : MonoBehaviour {
 
 	void Rotate () {
 		Vector2 mousePosition = Input.mousePosition;
-		Vector2 shapePosition = Camera.main.WorldToScreenPoint (transform.position);
-		float currentRotation = transform.eulerAngles.z;//0 to 360 counterclockwise
-		float targetRotation = Mathf.Atan2 (mousePosition.x - shapePosition.x, mousePosition.y - shapePosition.y) * -Mathf.Rad2Deg;//0 to 180, then -180 to 0 counterclockwise
+		Vector2 transformPosition = Camera.main.WorldToScreenPoint (transform.position);
+		//float currentRotation = transform.eulerAngles.z;//0 to 360 counterclockwise
+		float currentRotation = transform.eulerAngles.z - Camera.main.transform.eulerAngles.z;
+		float targetRotation = Mathf.Atan2 (mousePosition.x - transformPosition.x, mousePosition.y - transformPosition.y) * -Mathf.Rad2Deg;//0 to 180, then -180 to 0 counterclockwise
 		float offsetRotation = (targetRotation - currentRotation)%360;
-		
-		if ((offsetRotation > -360 && offsetRotation <= -180) || (offsetRotation > 0 && offsetRotation <= 180)) {
-			rb2D.AddTorque (agent.torque);//turn left
-		} else if ((offsetRotation > -180 && offsetRotation < 0) || (offsetRotation > 180 && offsetRotation < 360)) {
-			rb2D.AddTorque (-agent.torque);//turn right
+
+		if (offsetRotation < 0f) {
+			offsetRotation += 360f;
+		}
+
+		if (offsetRotation > 0f && offsetRotation <= 90f) {									//(offsetRotation > 0f && offsetRotation <= 45f)
+			rb2D.AddTorque (agent.torque * offsetRotation/90f);//turn left slowly			//(agent.torque * offsetRotation/45f)
+		} else if (offsetRotation > 270f && offsetRotation < 360f) {						//(offsetRotation > 315f && offsetRotation < 360f)
+			rb2D.AddTorque (agent.torque * (offsetRotation-360f)/90f);//turn right slowly 	//(-agent.torque * (offsetRotation-360f)/-45f)
+		} else if (offsetRotation > 0f && offsetRotation <= 180f) {//0-360=-360 and 180-360=-180
+			rb2D.AddTorque (agent.torque);//turn left max
+		} else if (offsetRotation > 180f && offsetRotation < 360f) {//180-360=-180 and 360-360=0
+			rb2D.AddTorque (-agent.torque);//turn right max
 		}
 	}
 

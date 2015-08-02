@@ -8,8 +8,8 @@ public class Shoot : Ability {
 
 		Vector3 head = casterTransform.TransformPoint (new Vector3 (0, casterAgent.inradius));
 		GameObject projectileGameObject = (GameObject) GameObject.Instantiate (StockReferences.stockReferences.circleSmall2, head, casterTransform.rotation);
-		Vector3 forward = casterTransform.TransformPoint (new Vector3 (0, 1));
-		projectileGameObject.GetComponent<Rigidbody2D> ().velocity = (forward - casterTransform.position) * casterAgent.area * 5;
+		Vector3 forwardPosition = casterTransform.TransformPoint (new Vector3 (0, 1f));
+		projectileGameObject.GetComponent<Rigidbody2D> ().velocity = (forwardPosition - casterTransform.position) * casterAgent.area * 5;
 		projectileGameObject.AddComponent<Projectile> ();
 		projectileGameObject.GetComponent<SpriteRenderer> ().sortingLayerName = "Projectiles";
 

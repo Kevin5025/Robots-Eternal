@@ -32,6 +32,8 @@ public class SpawnManager : MonoBehaviour {
 		agent1 = (GameObject) Instantiate (pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
 		agent2 = (GameObject) Instantiate (pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
 
+		MainCamera.mainCamera.playerTransform = agent1.transform;
+
 		agent1.AddComponent<Player> ();
 		agent1.GetComponent<Agent> ().team = Entity.Team.BLUE;
 		agent2.GetComponent<Agent> ().team = Entity.Team.RED;

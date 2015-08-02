@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Agent : Entity {//will be abstract <- shape <- class
 
@@ -20,6 +21,7 @@ public class Agent : Entity {//will be abstract <- shape <- class
 	public List<Ability> abilityList;
 	
 	private GameObject healthBarContainerGameObject;
+	private Image healthBarContainerImage;
 
 	protected override void Awake () {
 		base.Awake ();
@@ -58,6 +60,7 @@ public class Agent : Entity {//will be abstract <- shape <- class
 		healthBarContainerGameObject = (GameObject) Instantiate (HUDManager.hUDManager.healthBarContainerStock, new Vector2 (transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
 		healthBarContainerGameObject.GetComponentInChildren<ResourceBar> ().targetTransform = transform;
 		healthBarContainerGameObject.GetComponentInChildren<ResourceBar> ().targetEntity = this;
+		healthBarContainerImage = healthBarContainerGameObject.GetComponent<Image> ();
 	}
 	
 	// Update is called once per frame
@@ -92,6 +95,7 @@ public class Agent : Entity {//will be abstract <- shape <- class
 		}
 		//Destroy (gameObject);
 		eliminated = true;
+		healthBarContainerImage.enabled = false;
 		StartCoroutine (Respawn ());
 	}
 
@@ -99,8 +103,9 @@ public class Agent : Entity {//will be abstract <- shape <- class
 		yield return new WaitForSeconds (respawnTime - fadeTime);
 		health = maxHealth;
 		expired = false; eliminated = false;
-		spriteRenderer.color = new Color (r, g, b, 1f);
 		gameObject.GetComponent<Collider2D> ().enabled = true;
+		spriteRenderer.color = new Color (r, g, b, 1f);
+		healthBarContainerImage.enabled = true;
 
 		GameObject spawnPoint = null;
 		if (team == Team.BLUE) {
