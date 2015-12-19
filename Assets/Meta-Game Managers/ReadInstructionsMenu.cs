@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ReadInstructionsMenu : MonoBehaviour {
 
@@ -21,6 +22,7 @@ public class ReadInstructionsMenu : MonoBehaviour {
 	}
 
 	void MainMenu () {
-		Application.LoadLevel ("Main Menu");
+        //Application.LoadLevel("Main Menu");
+        SceneManager.LoadScene("Main Menu");
 	}
 }
