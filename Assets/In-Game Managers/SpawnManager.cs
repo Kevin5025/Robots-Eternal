@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour {
 
 	void Awake() {
 		if (spawnManager == null) {//like a singleton
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			spawnManager = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);

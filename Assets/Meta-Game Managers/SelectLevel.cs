@@ -27,6 +27,10 @@ public class SelectLevel : MonoBehaviour {
 	}
 
 	void LevelI (int i) {
+		if (PauseMenu.pauseMenu.gameObject) {
+			PauseMenu.pauseMenu.gameObject.SetActive (true);
+		}
+
 		Application.LoadLevel ("Level " + i);
 	}
 

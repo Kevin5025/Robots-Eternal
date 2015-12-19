@@ -36,15 +36,18 @@ public class PauseMenu : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			if (!pauseMenuCanvas.enabled) {
-				Time.timeScale = 0;
-				pauseMenuCanvas.enabled = true;
+				Pause ();
 			} else {
-				Time.timeScale = 1;
-				pauseMenuCanvas.enabled = false;
+				Resume ();
 			}
 			//Cursor.lockState = false;
 			//Cursor.visible = true;
 		}
+	}
+
+	void Pause () {
+		Time.timeScale = 0;
+		pauseMenuCanvas.enabled = true;
 	}
 	
 	void Resume () {
