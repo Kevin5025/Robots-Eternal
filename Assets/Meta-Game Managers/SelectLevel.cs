@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SelectLevel : MonoBehaviour {
 	
@@ -31,10 +32,12 @@ public class SelectLevel : MonoBehaviour {
 			PauseMenu.pauseMenu.gameObject.SetActive (true);
 		}
 
-		Application.LoadLevel ("Level " + i);
+        //Application.LoadLevel("Level " + i);
+        SceneManager.LoadScene("Level " + i);
 	}
 
 	void MainMenu () {
-		Application.LoadLevel ("Main Menu");
+        //Application.LoadLevel("Main Menu");
+        SceneManager.LoadScene("Main Menu");
 	}
 }

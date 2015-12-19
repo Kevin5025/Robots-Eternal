@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class ManageAccountsMenu : MonoBehaviour {
 	
@@ -74,7 +75,8 @@ public class ManageAccountsMenu : MonoBehaviour {
 	}
 
 	void Create () {
-		Application.LoadLevel ("Create Account Menu");
+        //Application.LoadLevel("Create Account Menu");
+        SceneManager.LoadScene("Create Account Menu");
 	}
 	
 	void Load () {
@@ -98,6 +100,7 @@ public class ManageAccountsMenu : MonoBehaviour {
 	}
 	
 	void MainMenu () {
-		Application.LoadLevel ("Main Menu");
+        //Application.LoadLevel("Main Menu");
+        SceneManager.LoadScene("Main Menu");
 	}
 }

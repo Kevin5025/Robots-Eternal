@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChangeSettingsMenu : MonoBehaviour {
 
@@ -71,11 +72,13 @@ public class ChangeSettingsMenu : MonoBehaviour {
 	}
 
 	void Cancel () {
-		Application.LoadLevel ("Main Menu");
+        //Application.LoadLevel("Main Menu");
+        SceneManager.LoadScene("Main Menu");
 	}
 
 	void Save () {
 		PersistenceManager.persistenceManager.SaveSettings ();
-		Application.LoadLevel ("Main Menu");
+        //Application.LoadLevel("Main Menu");
+        SceneManager.LoadScene("Main Menu");
 	}
 }

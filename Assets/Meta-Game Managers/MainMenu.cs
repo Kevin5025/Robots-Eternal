@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
 public class MainMenu : MonoBehaviour {
 
 	public Button selectLevelButton;
@@ -44,7 +45,8 @@ public class MainMenu : MonoBehaviour {
 
 	void SelectLevel () {
 		//Destroy (AccountCanvas.accountCanvas.gameObject);//Done in SelectLevel.cs for visual appeal
-		Application.LoadLevel ("Select Level Menu");
+		//Application.LoadLevel ("Select Level Menu");
+        SceneManager.LoadScene("Select Level Menu");
 	}
 /*
 	void CreateAccount () {
@@ -52,19 +54,23 @@ public class MainMenu : MonoBehaviour {
 	}
 */	
 	void ManageAccounts () {
-		Application.LoadLevel ("Manage Accounts Menu");
+        //Application.LoadLevel("Manage Accounts Menu");
+        SceneManager.LoadScene("Manage Accounts Menu");
 	}
 	
 	void ReadInstructions () {
-		Application.LoadLevel ("Read Instructions Menu");
+        //Application.LoadLevel("Read Instructions Menu");
+        SceneManager.LoadScene("Read Instructions Menu");
 	}
 
 	void ChangeSettings () {
-		Application.LoadLevel ("Change Settings Menu");
+        //Application.LoadLevel("Change Settings Menu");
+        SceneManager.LoadScene("Change Settings Menu");
 	}
 	
 	void ViewCredits () {
-		Application.LoadLevel ("View Credits Menu");
+        //Application.LoadLevel ("View Credits Menu");
+        SceneManager.LoadScene("View Credits Menu");
 	}
 	
 	void QuitGame () {
