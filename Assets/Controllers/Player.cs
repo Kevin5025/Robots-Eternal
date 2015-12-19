@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
 	void Awake () {
 		if (player == null) {//like a singleton
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			player = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);

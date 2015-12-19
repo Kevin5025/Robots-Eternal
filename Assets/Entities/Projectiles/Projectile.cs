@@ -17,7 +17,7 @@ public class Projectile : Entity {
 		maxHealth = 1f;
 		health = maxHealth;
 		mechanicalDamage = 20f;
-		timer = 2f;
+		timer = 1f;
 		GetComponent<CircleCollider2D> ().enabled = true;
 	}
 	

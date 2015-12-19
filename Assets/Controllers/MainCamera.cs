@@ -8,7 +8,7 @@ public class MainCamera : MonoBehaviour {
 
 	void Awake () {
 		if (mainCamera == null) {//like a singleton
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			mainCamera = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);

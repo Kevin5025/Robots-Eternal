@@ -41,7 +41,7 @@ public class Agent : Entity {//will be abstract <- shape <- class
 		inradius = 0.68819f * 0.41f;//pentagon; sidelength is 0.41
 		radius = 0.85065f * 0.41f;//pentagon
 		area = 1.705f;//pentagon
-		force = area * 15f;
+		force = area * 25f;
 		torque = area * 1.5f;//* 15f when there's no collider
 		GetComponent<Rigidbody2D>().mass = area;
 

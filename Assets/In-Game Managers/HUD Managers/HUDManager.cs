@@ -10,7 +10,7 @@ public class HUDManager : MonoBehaviour {
 
 	void Awake () {
 		if (hUDManager == null) {//like a singleton
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			hUDManager = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);

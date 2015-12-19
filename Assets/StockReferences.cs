@@ -13,7 +13,7 @@ public class StockReferences : MonoBehaviour {
 
 	protected virtual void Awake () {
 		if (stockReferences == null) {//like a singleton
-			DontDestroyOnLoad (gameObject);
+			//DontDestroyOnLoad (gameObject);
 			stockReferences = this;
 		} else { //if (menuColors != null)
 			Destroy(gameObject);
