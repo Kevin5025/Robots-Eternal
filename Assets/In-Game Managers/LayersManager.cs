@@ -34,23 +34,23 @@ public class LayersManager : MonoBehaviour {
 		wallVisionLayer = 28;
 		wallProjectileLayer = 29;
 		wallAgentLayer = 30;
-		wallLayer = 31;
+        wallLayer = 31;
 
-		//blue
-		Physics2D.IgnoreLayerCollision (blueAgentLayer, blueAgentLayer, true);
-		Physics2D.IgnoreLayerCollision (blueAgentLayer, blueProjectileLayer, true);
-		Physics2D.IgnoreLayerCollision (blueProjectileLayer, blueProjectileLayer, true);
+        ////blue
+        //Physics2D.IgnoreLayerCollision (blueAgentLayer, blueAgentLayer, true);
+        Physics2D.IgnoreLayerCollision (blueAgentLayer, blueProjectileLayer, true);
+        //Physics2D.IgnoreLayerCollision (blueProjectileLayer, blueProjectileLayer, true);
 
-		//red
-		Physics2D.IgnoreLayerCollision (redAgentLayer, redAgentLayer, true);
-		Physics2D.IgnoreLayerCollision (redAgentLayer, redProjectileLayer, true);
-		Physics2D.IgnoreLayerCollision (redProjectileLayer, redProjectileLayer, true);
+        ////red
+        //Physics2D.IgnoreLayerCollision (redAgentLayer, redAgentLayer, true);
+        Physics2D.IgnoreLayerCollision (redAgentLayer, redProjectileLayer, true);
+        //Physics2D.IgnoreLayerCollision (redProjectileLayer, redProjectileLayer, true);
 
-		//wall
-		Physics2D.IgnoreLayerCollision (wallAgentLayer, blueAgentLayer, true);
-		Physics2D.IgnoreLayerCollision (wallAgentLayer, redAgentLayer, true);
-		Physics2D.IgnoreLayerCollision (wallProjectileLayer, blueProjectileLayer, true);
-		Physics2D.IgnoreLayerCollision (wallProjectileLayer, redProjectileLayer, true);
+        ////wall
+        //Physics2D.IgnoreLayerCollision (wallAgentLayer, blueAgentLayer, true);
+        //Physics2D.IgnoreLayerCollision (wallAgentLayer, redAgentLayer, true);
+        Physics2D.IgnoreLayerCollision (wallProjectileLayer, blueProjectileLayer, true);
+        Physics2D.IgnoreLayerCollision (wallProjectileLayer, redProjectileLayer, true);
 	}
 	
 	// Update is called once per frame
