@@ -13,11 +13,6 @@ public class PolygonHero : PolygonAgent {
 		respawnTime = 10f;
 	}
 
-	protected override IEnumerator Fade() {
-		base.Fade();
-		yield return null;
-	}
-
 	protected override void EliminateSelf() {
 		eliminated = true;
 		healthBarContainerImage.enabled = false;

@@ -5,7 +5,7 @@ public abstract class PolygonEntity : Entity {
 
 	public const float sidelength = 0.41f;
 
-	public int sides;//assign in inspector
+	public int sides;//assign in inspector or in instantiation script
 	public float inradius;
 	public float circumradius;
 	public float area;

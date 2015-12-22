@@ -17,6 +17,7 @@ public abstract class Entity : Actuator {
 		base.Start();
 		defunct = false;
 
+		//TODO: do not sure healthbar for low hp projectile
 		healthBarContainerGameObject = (GameObject)Instantiate(HUDManager.hUDManager.healthBarContainerStock, new Vector2(transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
 		healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetTransform = transform;
 		healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetEntity = this;

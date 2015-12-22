@@ -25,9 +25,16 @@ public class SpawnPoint : Actuator {
             GameObject minionForward = (GameObject) Instantiate(SpawnManager.spawnManager.triangleAgentGameObjectStock, transform.position + positionForward, transform.rotation);
             GameObject minionRight = (GameObject) Instantiate(SpawnManager.spawnManager.triangleAgentGameObjectStock, transform.position + positionRight, transform.rotation);
 
-            minionLeft.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
-            minionForward.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
-            minionRight.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
+			minionLeft.AddComponent<PolygonAgent>();
+			minionForward.AddComponent<PolygonAgent>();
+			minionRight.AddComponent<PolygonAgent>();
+
+			minionLeft.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
+			minionLeft.GetComponent<PolygonAgent>().sides = 3;
+			minionForward.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
+			minionForward.GetComponent<PolygonAgent>().sides = 3;
+			minionRight.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
+			minionRight.GetComponent<PolygonAgent>().sides = 3;
 
             yield return new WaitForSeconds(minionWaveInterval);
         }
