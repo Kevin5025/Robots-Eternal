@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
 	public static Player player;
 
-	public Agent agent;
+	public PolygonAgent agent;
 	protected Rigidbody2D rb2D;//not like anything will inherit though
 
 	public int rotateScheme;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		agent = GetComponent<Agent> ();
+		agent = GetComponent<PolygonAgent> ();
 		rb2D = GetComponent<Rigidbody2D> ();
 		
 		cameraScheme = PersistenceManager.persistenceManager.settings.cameraScheme;

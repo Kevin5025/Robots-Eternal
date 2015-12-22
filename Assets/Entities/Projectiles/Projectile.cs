@@ -13,10 +13,20 @@ public class Projectile : Entity {
 
 	// Use this for initialization
 	protected override void Start () {
-		base.Start ();
+        base.Start();
+
+        gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Projectiles";
+
+        if (team == Team.BLUE) {
+            gameObject.layer = LayersManager.layersManager.blueProjectileLayer;
+        }
+        else if (team == Team.RED) {
+            gameObject.layer = LayersManager.layersManager.redProjectileLayer;
+        }
+
 		maxHealth = 1f;
 		health = maxHealth;
-		mechanicalDamage = 20f;
+		mechanicalDamage = 10f;
 		timer = 1f;
 		GetComponent<CircleCollider2D> ().enabled = true;
 	}

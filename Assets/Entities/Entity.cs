@@ -1,62 +1,67 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public abstract class Entity : MonoBehaviour {
+public abstract class Entity : Actuator {
 
 	public float health;
 	public float maxHealth;
 	public float mechanicalArmor;//will also have (bio)chemical, electromagnetic, thermal, nuclear, radiant?, etc. 
-	public bool expired;//aka dead, destroyed, etc. 
+	public bool defunct;//aka dead, destroyed, etc. 
 
-	public enum Team {BLUE, RED};
-	public Team team;
-	
-	protected SpriteRenderer spriteRenderer;
-	protected float r; protected float g; protected float b;
-
-	protected virtual void Awake () {
-
-	}
+	protected GameObject healthBarContainerGameObject;
+	protected Image healthBarContainerImage;
 
 	// Use this for initialization
-	protected virtual void Start () {
-		expired = false;
+	protected override void Start() {
+		base.Start();
+		defunct = false;
 
-		spriteRenderer = gameObject.GetComponent<SpriteRenderer> ();
-		if (team == Team.BLUE) {
-			spriteRenderer.color = new Color(0f, 0f, 1f);
-		} else if (team == Team.RED) {
-			spriteRenderer.color = new Color(1f, 0f, 0f);
+		healthBarContainerGameObject = (GameObject)Instantiate(HUDManager.hUDManager.healthBarContainerStock, new Vector2(transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
+		healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetTransform = transform;
+		healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetEntity = this;
+		healthBarContainerImage = healthBarContainerGameObject.GetComponent<Image>();
+	}
+
+	protected override void FixedUpdate() {
+		base.FixedUpdate();
+
+		if (!defunct) {
+			if (health < maxHealth) {
+				health += Time.deltaTime * maxHealth / 100;//
+			}
+			else if (health > maxHealth) {
+				health = maxHealth;
+			}
+			if (health <= 0) {
+				health = 0;
+				Expire();
+			}
 		}
-		r = spriteRenderer.color.r; g = spriteRenderer.color.g; b = spriteRenderer.color.b;
-	}
-	
-	// Update is called once per frame
-	protected virtual void Update () {
-	
 	}
 
-	protected virtual void FixedUpdate () {
-
+	protected virtual void Expire() {
+		defunct = true;
+		gameObject.GetComponent<Collider2D>().enabled = false;
+		StartCoroutine(Fade());
 	}
 
-	protected virtual void Expire () {
-		expired = true; 
-		gameObject.GetComponent<Collider2D> ().enabled = false;
-		StartCoroutine (Fade ());
+	protected virtual IEnumerator Fade() {
+		spriteRenderer.color = new Color(r, g, b, 0.25f);//instant fade
+		yield return new WaitForSeconds(1f);
+		EliminateSelf();
 	}
 
-	protected virtual IEnumerator Fade () {
-		spriteRenderer.color = new Color (r, g, b, 0.25f);//instant fade
-		yield return new WaitForSeconds (1f);
-		Destroy (gameObject);
+	protected virtual void EliminateSelf() {
+		Destroy(healthBarContainerGameObject);
+		Destroy(gameObject);
 	}
 
-	public void takeDiscreteDamage (float damage) {
+	public void takeDiscreteDamage(float damage) {
 		health -= damage * (100f / (100f + mechanicalArmor));
 	}
 
-	public void takeContinuousDamage (float damage) {//to be called in a float for-loop
+	public void takeContinuousDamage(float damage) {//to be called in a float for-loop
 		health -= Time.fixedDeltaTime * damage * (100f / (100f + mechanicalArmor));
 	}
 }

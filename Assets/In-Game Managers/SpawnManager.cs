@@ -5,15 +5,12 @@ public class SpawnManager : MonoBehaviour {
 
 	public static SpawnManager spawnManager;
 
-	public GameObject spawnPointGameObjectStock;//almost purely for visual, but also keeps position and rotation joined
+	public GameObject spawnPointGameObjectStock;//keeps position and rotation
 	public GameObject pentagonAgentGameObjectStock;
+    public GameObject triangleAgentGameObjectStock;
 	
-
-	public GameObject blueRespawnPointGameObject;
+	public GameObject blueRespawnPointGameObject;//TODO: make not public and use a public method instead
 	public GameObject redRespawnPointGameObject;
-
-	public GameObject agent1;
-	public GameObject agent2;
 
 	void Awake() {
 		if (spawnManager == null) {//like a singleton
@@ -29,14 +26,17 @@ public class SpawnManager : MonoBehaviour {
 		blueRespawnPointGameObject = (GameObject) Instantiate (spawnPointGameObjectStock, new Vector2 (0f, -1f), Quaternion.identity);
 		redRespawnPointGameObject = (GameObject) Instantiate (spawnPointGameObjectStock, new Vector2 (0f, 1f), Quaternion.Euler (0, 0, 180));
 
-		agent1 = (GameObject) Instantiate (pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
-		agent2 = (GameObject) Instantiate (pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
+        blueRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
+        redRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.RED;
 
-		MainCamera.mainCamera.playerTransform = agent1.transform;
+		GameObject agent1 = (GameObject) Instantiate (pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
+		GameObject agent2 = (GameObject) Instantiate (pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
 
-		agent1.AddComponent<Player> ();
-		agent1.GetComponent<Agent> ().team = Entity.Team.BLUE;
-		agent2.GetComponent<Agent> ().team = Entity.Team.RED;
+		agent1.AddComponent<Player>();
+        agent1.GetComponent<PolygonAgent>().team = Actuator.Team.BLUE;
+        agent2.GetComponent<PolygonAgent>().team = Actuator.Team.RED;
+
+        MainCamera.mainCamera.playerTransform = agent1.transform;
 	}
 	
 	// Update is called once per frame
