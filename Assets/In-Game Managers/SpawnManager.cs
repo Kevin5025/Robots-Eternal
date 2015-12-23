@@ -23,26 +23,25 @@ public class SpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		blueRespawnPointGameObject = (GameObject) Instantiate (spawnPointGameObjectStock, new Vector2 (0f, -1f), Quaternion.identity);
-		redRespawnPointGameObject = (GameObject) Instantiate (spawnPointGameObjectStock, new Vector2 (0f, 1f), Quaternion.Euler (0, 0, 180));
+		blueRespawnPointGameObject = (GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, -1f), Quaternion.identity);
+		blueRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
 
-        blueRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
-        redRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.RED;
+		redRespawnPointGameObject = (GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, 1f), Quaternion.Euler(0, 0, 180));
+		redRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.RED;
 
-		GameObject agent1 = (GameObject) Instantiate (pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
-		GameObject agent2 = (GameObject) Instantiate (pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
 
-		agent1.AddComponent<PolygonHero>();
-		agent2.AddComponent<PolygonHero>();
+		GameObject blueHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
+		blueHero.AddComponent<PolygonHero>();
+		blueHero.GetComponent<PolygonHero>().team = Actuator.Team.BLUE;
+		blueHero.GetComponent<PolygonHero>().sides = 5;
 
-		agent1.GetComponent<PolygonHero>().team = Actuator.Team.BLUE;
-		agent1.GetComponent<PolygonHero>().sides = 5;
-		agent2.GetComponent<PolygonHero>().team = Actuator.Team.RED;
-		agent2.GetComponent<PolygonHero>().sides = 5;
+		blueHero.AddComponent<Player>();
+		MainCamera.mainCamera.playerTransform = blueHero.transform;
 
-		agent1.AddComponent<Player>();
-
-        MainCamera.mainCamera.playerTransform = agent1.transform;
+		GameObject redHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
+		redHero.AddComponent<PolygonHero>();
+		redHero.GetComponent<PolygonHero>().team = Actuator.Team.RED;
+		redHero.GetComponent<PolygonHero>().sides = 5;
 	}
 	
 	// Update is called once per frame

@@ -5,15 +5,15 @@ public class ResourceBar : MonoBehaviour {
 	
 	public Transform healthBarContainerTransform;
 	public Transform targetTransform;
-    private float width;
+    private float healthBarWidth;//relative to 1.0f
 	public Entity targetEntity;
 
 	// Use this for initialization
 	void Start () {
-        width = targetEntity.maxHealth / 115;
+        healthBarWidth = targetEntity.maxHealth / 115;//TODO: consider LoL style
 		healthBarContainerTransform = transform.parent;//or I could just assign in Editor
 		healthBarContainerTransform.SetParent(HUDManager.hUDManager.hUDCanvas.transform);
-		healthBarContainerTransform.localScale = new Vector3 (width, 1f, 1f);
+		healthBarContainerTransform.localScale = new Vector3 (healthBarWidth, 1f, 1f);
 	}
 	
 	// Update is called once per frame

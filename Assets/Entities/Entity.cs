@@ -5,11 +5,11 @@ using UnityEngine.UI;
 public abstract class Entity : Actuator {
 
 	public float health;
-    public bool displayHP = true;
 	public float maxHealth;
 	public float mechanicalArmor;//will also have (bio)chemical, electromagnetic, thermal, nuclear, radiant?, etc. 
 	public bool defunct;//aka dead, destroyed, etc. 
 
+	protected bool displayHealthBarContainerGameObject = true;
 	protected GameObject healthBarContainerGameObject;
 	protected Image healthBarContainerImage;
 
@@ -19,13 +19,12 @@ public abstract class Entity : Actuator {
 		defunct = false;
 
 		//TODO: do not sure healthbar for low hp projectile
-        if (displayHP)
-        {
-            healthBarContainerGameObject = (GameObject)Instantiate(HUDManager.hUDManager.healthBarContainerStock, new Vector2(transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
-            healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetTransform = transform;
-            healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetEntity = this;
-            healthBarContainerImage = healthBarContainerGameObject.GetComponent<Image>();
-        }
+		if (displayHealthBarContainerGameObject) {
+			healthBarContainerGameObject = (GameObject)Instantiate(HUDManager.hUDManager.healthBarContainerStock, new Vector2(transform.position.x, transform.position.y + 0.6f), Quaternion.identity);
+			healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetTransform = transform;
+			healthBarContainerGameObject.GetComponentInChildren<ResourceBar>().targetEntity = this;
+			healthBarContainerImage = healthBarContainerGameObject.GetComponent<Image>();
+		}
 	}
 
 	protected override void FixedUpdate() {
