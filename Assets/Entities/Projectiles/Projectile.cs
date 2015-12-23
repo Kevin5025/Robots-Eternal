@@ -13,6 +13,7 @@ public class Projectile : Entity {
 
 	// Use this for initialization
 	protected override void Start () {
+        displayHP = false;
         base.Start();
 
         gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Projectiles";
