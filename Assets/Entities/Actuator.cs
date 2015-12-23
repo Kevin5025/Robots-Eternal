@@ -19,8 +19,7 @@ public abstract class Actuator : MonoBehaviour {
         if (team == Team.BLUE) {
             //spriteRenderer.color = new Color(0f, 0f, 1f);
             spriteRenderer.color = new Color(0, 0, spriteRenderer.color.b);
-        }
-        else if (team == Team.RED) {
+        } else if (team == Team.RED) {
             //spriteRenderer.color = new Color(1f, 0f, 0f);
             spriteRenderer.color = new Color(spriteRenderer.color.r, 0, 0);
         }

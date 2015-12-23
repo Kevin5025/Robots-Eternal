@@ -4,6 +4,7 @@ using System.Collections;
 public class StockReferences : MonoBehaviour {
 
 	public static StockReferences stockReferences;
+	public GameObject block;
 	public GameObject circleSmall;
 	public GameObject circleMedium;
 	public GameObject circleLarge;
