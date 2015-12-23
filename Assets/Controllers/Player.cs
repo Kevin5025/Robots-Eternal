@@ -31,13 +31,12 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        Fire();
 	}
 
 	void FixedUpdate () {
 		Rotate ();
 		Move ();
-		Fire ();
 	}
 
 	void Rotate () {
