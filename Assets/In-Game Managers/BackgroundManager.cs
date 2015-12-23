@@ -11,8 +11,7 @@ public class BackgroundManager : MonoBehaviour {
 		if (backgroundManager == null) {//like a singleton
 			//DontDestroyOnLoad (gameObject);
 			backgroundManager = this;
-		}
-		else { //if (menuColors != null)
+		} else { //if (menuColors != null)
 			Destroy(gameObject);
 		}
 	}
