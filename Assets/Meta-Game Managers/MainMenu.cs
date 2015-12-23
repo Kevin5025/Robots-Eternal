@@ -70,7 +70,8 @@ public class MainMenu : MonoBehaviour {
 	
 	void ViewCredits () {
         //Application.LoadLevel ("View Credits Menu");
-        SceneManager.LoadScene("View Credits Menu");
+        //SceneManager.LoadScene("View Credits Menu");
+		Debug.Log("TODO");
 	}
 	
 	void QuitGame () {
