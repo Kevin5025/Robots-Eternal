@@ -122,7 +122,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Fire () {
-		if (Input.GetMouseButtonDown (0)) {
+		if (Input.GetMouseButton (0)) {
 			agent.abilityList[0].Activate (transform, agent);
 		}
 	}
