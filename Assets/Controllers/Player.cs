@@ -55,7 +55,7 @@ public class Player : MonoBehaviour {
 			if (rotateScheme == 0) {//recommended with cameraScheme == 0
 				if (offsetRotation > 0f && offsetRotation <= 180f) {//0-360=-360 and 180-360=-180
 					rb2D.AddTorque (agent.torque);//turn left max
-				} else if (offsetRotation > 180f && offsetRotation < 360f) {//180-360=-180 and 360-360=0
+				} else {//180-360=-180 and 360-360=0
 					rb2D.AddTorque (-agent.torque);//turn right max
 				}
 			} else if (rotateScheme == 1) {//recommended with cameraScheme == 1
