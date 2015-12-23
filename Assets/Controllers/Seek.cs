@@ -16,30 +16,16 @@ public class Seek : MonoBehaviour {
     void FixedUpdate () {
         Vector3 dir = target.transform.position - transform.position;
         float currentRotation = transform.eulerAngles.z;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-        float offsetRotation = (angle - currentRotation) % 360;
-        Debug.Log("Angle: " + angle);
-        Debug.Log("rotation.z: " + transform.rotation.z);
-        Debug.Log("offset: " + offsetRotation);
-        if (offsetRotation < 0f)
-        {
-            offsetRotation += 360f;
-        }
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 270;
+        float offsetRotation = Mathf.Abs((angle - currentRotation) % 360);
+
         if (offsetRotation > 0f && offsetRotation <= 90f)
-        {
             rb.AddTorque(me.torque * offsetRotation / 90f);//turn left slowly
-        }
         else if (offsetRotation > 270f && offsetRotation < 360f)
-        {
             rb.AddTorque(me.torque * (offsetRotation - 360f) / 90f);//turn right slowly
-        }
         else if (offsetRotation > 0f && offsetRotation <= 180f)
-        {
             rb.AddTorque(me.torque);//turn left max
-        }
         else if (offsetRotation > 180f && offsetRotation < 360f)
-        {
             rb.AddTorque(-me.torque);//turn right max
-        }
 	}
 }
