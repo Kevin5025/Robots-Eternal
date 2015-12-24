@@ -10,13 +10,12 @@ public class PolygonAgent : PolygonEntity {
 	public List<Ability> abilityList;
 
 	// Use this for initialization
-	protected override void Start() {
+	protected override void Start () {
 		base.Start();
 
 		if (team == Team.BLUE) {
 			gameObject.layer = LayersManager.layersManager.blueAgentLayer;
-		}
-		else if (team == Team.RED) {
+		} else if (team == Team.RED) {
 			gameObject.layer = LayersManager.layersManager.redAgentLayer;
 		}
 
@@ -31,7 +30,7 @@ public class PolygonAgent : PolygonEntity {
 		abilityList.Add(new Shoot());
 	}
 
-	protected override IEnumerator Fade() {
+	protected override IEnumerator Fade () {
 		for (float f = 0.25f; f > 0; f -= Time.deltaTime * fadeTimeConstant) {
 			spriteRenderer.color = new Color(r, g, b, f);
 			//yield return new WaitForSeconds(1f);//3f? //is this consistent? 

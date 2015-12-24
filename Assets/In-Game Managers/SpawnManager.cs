@@ -7,16 +7,16 @@ public class SpawnManager : MonoBehaviour {
 
 	public GameObject spawnPointGameObjectStock;//keeps position and rotation
 	public GameObject pentagonAgentGameObjectStock;
-    public GameObject triangleAgentGameObjectStock;
-	
+	public GameObject triangleAgentGameObjectStock;
+
 	public GameObject blueRespawnPointGameObject;//TODO: make not public and use a public method instead
 	public GameObject redRespawnPointGameObject;
 
-	void Awake() {
+	void Awake () {
 		if (spawnManager == null) {//like a singleton
 			//DontDestroyOnLoad (gameObject);
 			spawnManager = this;
-		} else { //if (menuColors != null)
+		} else {
 			Destroy(gameObject);
 		}
 	}
@@ -43,9 +43,9 @@ public class SpawnManager : MonoBehaviour {
 		redHero.GetComponent<PolygonHero>().team = Actuator.Team.RED;
 		redHero.GetComponent<PolygonHero>().sides = 5;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }

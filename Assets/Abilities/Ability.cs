@@ -5,7 +5,7 @@ public abstract class Ability {
 	protected float cooldownTimeout;
 	protected float nextReady;
 
-	public virtual void Activate(Transform casterTransform, PolygonAgent casterAgent) {
+	public virtual void Activate (Transform casterTransform, PolygonAgent casterAgent) {
 		if (nextReady > Time.time)
 			return;
 
@@ -13,7 +13,7 @@ public abstract class Ability {
 
 		nextReady = Time.time + cooldownTimeout;//TODO: does this ever overflow? 
 	}
-	public virtual void Actuate(Transform casterTransform, PolygonAgent casterAgent) {
+	public virtual void Actuate (Transform casterTransform, PolygonAgent casterAgent) {
 
 	}
 }

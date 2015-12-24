@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 		if (player == null) {//like a singleton
 			//DontDestroyOnLoad (gameObject);
 			player = this;
-		} else { //if (menuColors != null)
+		} else {
 			Destroy(gameObject);
 		}
 	}
@@ -46,16 +46,16 @@ public class Player : MonoBehaviour {
 			//float currentRotation = transform.eulerAngles.z;//0 to 360 counterclockwise
 			float currentRotation = transform.eulerAngles.z - Camera.main.transform.eulerAngles.z;
 			float targetRotation = Mathf.Atan2 (mousePosition.x - transformPosition.x, mousePosition.y - transformPosition.y) * -Mathf.Rad2Deg;//0 to 180, then -180 to 0 counterclockwise
-			float offsetRotation = (targetRotation - currentRotation) % 360;
+			float offsetRotation = (targetRotation - currentRotation) % 360;//between -360 and 360
 			
 			if (offsetRotation < 0f) {
-				offsetRotation += 360f;
+				offsetRotation += 360f;//between 0 and 360;
 			}
 
 			if (rotateScheme == 0) {//recommended with cameraScheme == 0
-				if (offsetRotation > 0f && offsetRotation <= 180f) {//0-360=-360 and 180-360=-180
+				if (offsetRotation > 0f && offsetRotation < 180f) {
 					rb2D.AddTorque (agent.torque);//turn left max
-				} else if (offsetRotation > 180f && offsetRotation < 360f) {//180-360=-180 and 360-360=0
+				} else if (offsetRotation > 180f && offsetRotation < 360f) {
 					rb2D.AddTorque (-agent.torque);//turn right max
 				}
 			} else if (rotateScheme == 1) {//recommended with cameraScheme == 1
@@ -63,9 +63,9 @@ public class Player : MonoBehaviour {
 					rb2D.AddTorque (agent.torque * offsetRotation / 90f);//turn left slowly			//(agent.torque * offsetRotation/45f)
 				} else if (offsetRotation > 270f && offsetRotation < 360f) {						//(offsetRotation > 315f && offsetRotation < 360f)
 					rb2D.AddTorque (agent.torque * (offsetRotation - 360f) / 90f);//turn right slowly 	//(-agent.torque * (offsetRotation-360f)/-45f)
-				} else if (offsetRotation > 0f && offsetRotation <= 180f) {//0-360=-360 and 180-360=-180
+				} else if (offsetRotation > 0f && offsetRotation <= 180f) {
 					rb2D.AddTorque (agent.torque);//turn left max
-				} else if (offsetRotation > 180f && offsetRotation < 360f) {//180-360=-180 and 360-360=0
+				} else if (offsetRotation > 180f && offsetRotation < 360f) {
 					rb2D.AddTorque (-agent.torque);//turn right max
 				}
 			}

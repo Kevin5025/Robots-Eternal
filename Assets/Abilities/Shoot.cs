@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class Shoot : Ability {
-	public Shoot() {
+	public Shoot () {
 		cooldownTimeout = 0.3f;
 	}
 
-	public override void Actuate(Transform casterTransform, PolygonAgent casterAgent) {
+	public override void Actuate (Transform casterTransform, PolygonAgent casterAgent) {
 		base.Actuate(casterTransform, casterAgent);
 
 		Vector3 head = casterTransform.TransformPoint(new Vector3(0, casterAgent.inradius));

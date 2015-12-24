@@ -7,19 +7,19 @@ public class PolygonHero : PolygonAgent {
 	protected float respawnTime;
 
 	// Use this for initialization
-	protected override void Start() {
+	protected override void Start () {
 		base.Start();
 		eliminated = false;
 		respawnTime = 10f;
 	}
 
-	protected override void EliminateSelf() {
+	protected override void EliminateSelf () {
 		eliminated = true;
 		healthBarContainerImage.enabled = false;
 		StartCoroutine(Respawn());
 	}
 
-	protected IEnumerator Respawn() {
+	protected IEnumerator Respawn () {
 		yield return new WaitForSeconds(respawnTime - fadeTime);
 		health = maxHealth;
 		defunct = false; eliminated = false;
@@ -30,8 +30,7 @@ public class PolygonHero : PolygonAgent {
 		GameObject spawnPoint = null;
 		if (team == Team.BLUE) {
 			spawnPoint = SpawnManager.spawnManager.blueRespawnPointGameObject;
-		}
-		else if (team == Team.RED) {
+		} else if (team == Team.RED) {
 			spawnPoint = SpawnManager.spawnManager.redRespawnPointGameObject;
 		}
 		if (spawnPoint != null) {

@@ -14,7 +14,7 @@ public abstract class Entity : Actuator {
 	protected Image healthBarContainerImage;
 
 	// Use this for initialization
-	protected override void Start() {
+	protected override void Start () {
 		base.Start();
 		defunct = false;
 
@@ -26,14 +26,13 @@ public abstract class Entity : Actuator {
 		}
 	}
 
-	protected override void FixedUpdate() {
+	protected override void FixedUpdate () {
 		base.FixedUpdate();
 
 		if (!defunct) {
 			if (health < maxHealth) {
 				health += Time.deltaTime * maxHealth / 100;//
-			}
-			else if (health > maxHealth) {
+			} else if (health > maxHealth) {
 				health = maxHealth;
 			}
 			if (health <= 0) {
@@ -43,28 +42,28 @@ public abstract class Entity : Actuator {
 		}
 	}
 
-	protected virtual void Expire() {
+	protected virtual void Expire () {
 		defunct = true;
 		gameObject.GetComponent<Collider2D>().enabled = false;
 		StartCoroutine(Fade());
 	}
 
-	protected virtual IEnumerator Fade() {
+	protected virtual IEnumerator Fade () {
 		spriteRenderer.color = new Color(r, g, b, 0.25f);//instant fade
 		yield return new WaitForSeconds(1f);
 		EliminateSelf();
 	}
 
-	protected virtual void EliminateSelf() {
+	protected virtual void EliminateSelf () {
 		Destroy(healthBarContainerGameObject);
 		Destroy(gameObject);
 	}
 
-	public void takeDiscreteDamage(float damage) {
+	public void takeDiscreteDamage (float damage) {
 		health -= damage * (100f / (100f + mechanicalArmor));
 	}
 
-	public void takeContinuousDamage(float damage) {//to be called in a float for-loop
+	public void takeContinuousDamage (float damage) {//to be called in a float for-loop
 		health -= Time.fixedDeltaTime * damage * (100f / (100f + mechanicalArmor));
 	}
 }
