@@ -8,6 +8,7 @@ public abstract class PolygonEntity : Entity {
 	public int sides;//assign in inspector or in instantiation script
 	public float inradius;
 	public float circumradius;
+	public float radius;//~"center of rotational inertia"
 	public float area;
 
 	public float mass;
@@ -20,11 +21,13 @@ public abstract class PolygonEntity : Entity {
 
 		inradius = InRadius(sides, sidelength);
 		circumradius = CircumRadius(sides, sidelength);
+		//radius = GetComponent<Rigidbody2D>().inertia;//TODO
 		area = Area(sides, sidelength);
 
 		GetComponent<Rigidbody2D>().mass = area;
 		force = area * 25f;
-		torque = area * 2.5f;//* 25f when there's no collider
+		torque = force * inradius * 0.5f * (inradius + circumradius);//not a perfect representation of the mechanical advantage
+		//torque = force * radius;//TODO
 	}
 
 	public static float InRadius (int sides, float sidelength) {//Apothem

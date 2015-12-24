@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour {
 
@@ -9,8 +10,8 @@ public class SpawnManager : MonoBehaviour {
 	public GameObject pentagonAgentGameObjectStock;
 	public GameObject triangleAgentGameObjectStock;
 
-	public GameObject blueRespawnPointGameObject;//TODO: make not public and use a public method instead
-	public GameObject redRespawnPointGameObject;
+	public List<GameObject> blueRespawnPointGameObjectList = new List<GameObject>();//TODO: make not public and use a public method instead
+	public List<GameObject> redRespawnPointGameObjectList = new List<GameObject>();
 
 	void Awake () {
 		if (spawnManager == null) {//like a singleton
@@ -23,14 +24,15 @@ public class SpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		blueRespawnPointGameObject = (GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, -1f), Quaternion.identity);
-		blueRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
+		blueRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, -1f), Quaternion.identity));
+		blueRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
 
-		redRespawnPointGameObject = (GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, 1f), Quaternion.Euler(0, 0, 180));
-		redRespawnPointGameObject.GetComponent<SpawnPoint>().team = Actuator.Team.RED;
+		redRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, 1f), Quaternion.Euler(0, 0, 180)));
+		redRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().team = Actuator.Team.RED;
 
+		//GameObject.Find
 
-		GameObject blueHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, blueRespawnPointGameObject.transform.position, blueRespawnPointGameObject.transform.rotation);
+		GameObject blueHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, blueRespawnPointGameObjectList[0].transform.position, blueRespawnPointGameObjectList[0].transform.rotation);
 		blueHero.AddComponent<PolygonHero>();
 		blueHero.GetComponent<PolygonHero>().team = Actuator.Team.BLUE;
 		blueHero.GetComponent<PolygonHero>().sides = 5;
@@ -38,7 +40,7 @@ public class SpawnManager : MonoBehaviour {
 		blueHero.AddComponent<Player>();
 		MainCamera.mainCamera.playerTransform = blueHero.transform;
 
-		GameObject redHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, redRespawnPointGameObject.transform.position, redRespawnPointGameObject.transform.rotation);
+		GameObject redHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, redRespawnPointGameObjectList[0].transform.position, redRespawnPointGameObjectList[0].transform.rotation);
 		redHero.AddComponent<PolygonHero>();
 		redHero.GetComponent<PolygonHero>().team = Actuator.Team.RED;
 		redHero.GetComponent<PolygonHero>().sides = 5;
@@ -47,5 +49,12 @@ public class SpawnManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+	}
+
+	public GameObject getBlueSpawnPointGameObject () {
+		return blueRespawnPointGameObjectList[0];
+	}
+	public GameObject getRedSpawnPointGameObject () {
+		return redRespawnPointGameObjectList[0];
 	}
 }

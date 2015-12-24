@@ -11,7 +11,7 @@ public abstract class Ability {
 
 		Actuate(casterTransform, casterAgent);
 
-		nextReady = Time.time + cooldownTimeout;//TODO: does this ever overflow? 
+		nextReady = Time.time + cooldownTimeout;
 	}
 	public virtual void Actuate (Transform casterTransform, PolygonAgent casterAgent) {
 

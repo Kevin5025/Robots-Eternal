@@ -29,9 +29,9 @@ public class PolygonHero : PolygonAgent {
 
 		GameObject spawnPoint = null;
 		if (team == Team.BLUE) {
-			spawnPoint = SpawnManager.spawnManager.blueRespawnPointGameObject;
+			spawnPoint = SpawnManager.spawnManager.getBlueSpawnPointGameObject();//TODO: function call
 		} else if (team == Team.RED) {
-			spawnPoint = SpawnManager.spawnManager.redRespawnPointGameObject;
+			spawnPoint = SpawnManager.spawnManager.getRedSpawnPointGameObject();
 		}
 		if (spawnPoint != null) {
 			transform.position = spawnPoint.transform.position;
