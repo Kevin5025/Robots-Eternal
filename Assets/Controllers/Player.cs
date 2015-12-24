@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class Player : MonoBehaviour {
 
@@ -92,32 +91,32 @@ public class Player : MonoBehaviour {
 		
 		float horizForce, vertForce;
 
-		if (W && !S) {
-			vertForce = agent.force;
-		} else if (S && !W) {
-			vertForce = -agent.force;
-		} else {//if (W && S || !W && !S)
-			vertForce = 0;
-		}
+		if (W && !S) 
+            vertForce = agent.force;
+        else if (S && !W) 
+            vertForce = -agent.force;
+        else //if (W && S || !W && !S)
+            vertForce = 0;
 		
-		if (A && !D) {
+		
+		if (A && !D)
 			horizForce = -agent.force;
-		} else if (D && !A) {
+		else if (D && !A)
 			horizForce = agent.force;
-		} else {
+		else
 			horizForce = 0;
-		}
+		
 		
 		if (vertForce != 0 && horizForce != 0) {
 			vertForce *= MyStaticLibrary.sqrt2over2;
 			horizForce *= MyStaticLibrary.sqrt2over2;
 		}
 
-		if (cameraScheme == 0) {
+		if (cameraScheme == 0)
 			rb2D.AddForce (new Vector2 (horizForce, vertForce));
-		} else if (cameraScheme == 1) {
+		else if (cameraScheme == 1)
 			rb2D.AddRelativeForce (new Vector2 (horizForce, vertForce));
-		}
+	   
 		//either way, it's relative to camera
 	}
 
