@@ -3,7 +3,7 @@ using System.Collections;
 
 public abstract class PolygonEntity : Entity {
 
-	public const float sidelength = 0.4f;
+	public const float sidelength = 0.4f;//theoretically 1/(1+sqrt(2))
 
 	public int sides;//assign in inspector or in instantiation script
 	public float area;
@@ -26,8 +26,12 @@ public abstract class PolygonEntity : Entity {
 		circumradius = CircumRadius(sides, sidelength);
 		radius = Mathf.Sqrt(2*GetComponent<Rigidbody2D>().inertia/GetComponent<Rigidbody2D>().mass);
 
-		force = GetComponent<Rigidbody2D>().mass * 25f;
-		torque = GetComponent<Rigidbody2D>().inertia * 50f;
+		force = GetComponent<Rigidbody2D>().mass * 25f;//pi*r*r * 25
+		torque = GetComponent<Rigidbody2D>().inertia * 50f;//0.5*pi*r*r*r*r * 50 = F*r*r, but should be T = F*r
+											//the inconsistency is:
+											//angular acceleration decreases as the Force distance increases
+												//e.g. Torque increases, but moment of inertia increases squared
+											//however, the Force increases squared as the radius increases
 	}
 
 	public static float InRadius (int sides, float sidelength) {//Apothem
