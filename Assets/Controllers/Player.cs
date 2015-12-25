@@ -51,6 +51,7 @@ public class Player : MonoBehaviour {
 				offsetRotation += 360f;//between 0 and 360;
 			}
 
+			//TODO: proactively slow down to avoid shaky
 			if (rotateScheme == 0) {//recommended with cameraScheme == 0
 				if (offsetRotation > 0f && offsetRotation < 180f) {
 					rb2D.AddTorque (agent.torque);//turn left max

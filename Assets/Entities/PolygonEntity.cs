@@ -3,15 +3,15 @@ using System.Collections;
 
 public abstract class PolygonEntity : Entity {
 
-	public const float sidelength = 0.41f;
+	public const float sidelength = 0.4f;
 
 	public int sides;//assign in inspector or in instantiation script
-	public float inradius;
-	public float circumradius;
-	public float radius;//~"center of rotational inertia"
 	public float area;
 
-	public float mass;
+	public float inradius;
+	public float circumradius;
+	public float radius;
+
 	public float force;
 	public float torque;
 
@@ -19,15 +19,15 @@ public abstract class PolygonEntity : Entity {
 	protected override void Start () {
 		base.Start();
 
+		area = Area(sides, sidelength);
+		GetComponent<Rigidbody2D>().mass = area;
+
 		inradius = InRadius(sides, sidelength);
 		circumradius = CircumRadius(sides, sidelength);
-		//radius = GetComponent<Rigidbody2D>().inertia;//TODO
-		area = Area(sides, sidelength);
+		radius = Mathf.Sqrt(2*GetComponent<Rigidbody2D>().inertia/GetComponent<Rigidbody2D>().mass);
 
-		GetComponent<Rigidbody2D>().mass = area;
-		force = area * 25f;
-		torque = force * inradius * 0.5f * (inradius + circumradius);//not a perfect representation of the mechanical advantage
-		//torque = force * radius;//TODO
+		force = GetComponent<Rigidbody2D>().mass * 25f;
+		torque = GetComponent<Rigidbody2D>().inertia * 50f;
 	}
 
 	public static float InRadius (int sides, float sidelength) {//Apothem
