@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
 	public PolygonAgent agent;
 	protected Rigidbody2D rb2D;//not like anything will inherit though
 
+	public float magicTrajectoryConstant = 0.01f;//perhaps a possible upgrade
+
 	public int cameraScheme;
 	public int rotateScheme;
 
@@ -60,7 +62,7 @@ public class Player : MonoBehaviour {
 			//vt=d => v*v/a*t=d >= offset?	see if trajected distance overshoots offset
 											//if so, then decelerate, else continue accelerating
 			//rb2D.angularVelocity*rb2D.angularVelocity/(agent.torq)
-			float trajectedRotation = 0.01f*Mathf.Abs(rb2D.angularVelocity)*rb2D.angularVelocity/(agent.torque/rb2D.inertia);//magic 0.01f is due to angular drag and bad calculus
+			float trajectedRotation = magicTrajectoryConstant * Mathf.Abs(rb2D.angularVelocity) * rb2D.angularVelocity / (agent.torque / rb2D.inertia);//magic 0.01f is due to angular drag and bad calculus
 				//positive is counterclock, negative is clock
 			//Debug.Log("1:" + rb2D.angularVelocity + ", " + (agent.torque / rb2D.inertia));
 			//Debug.Log("2:" + trajectedRotation + ", " + offsetRotation);
