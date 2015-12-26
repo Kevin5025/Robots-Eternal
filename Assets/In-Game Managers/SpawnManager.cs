@@ -29,10 +29,9 @@ public class SpawnManager : MonoBehaviour {
 
 		redRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, 1f), Quaternion.Euler(0, 0, 180)));
 		redRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().team = Actuator.Team.RED;
+        //GameObject.Find
 
-		//GameObject.Find
-
-		GameObject blueHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, blueRespawnPointGameObjectList[0].transform.position, blueRespawnPointGameObjectList[0].transform.rotation);
+        GameObject blueHero = (GameObject)Instantiate(pentagonAgentGameObjectStock, blueRespawnPointGameObjectList[0].transform.position, blueRespawnPointGameObjectList[0].transform.rotation);
 		blueHero.AddComponent<PolygonHero>();
 		blueHero.GetComponent<PolygonHero>().team = Actuator.Team.BLUE;
 		blueHero.GetComponent<PolygonHero>().sides = 5;
@@ -44,10 +43,12 @@ public class SpawnManager : MonoBehaviour {
 		redHero.AddComponent<PolygonHero>();
 		redHero.GetComponent<PolygonHero>().team = Actuator.Team.RED;
 		redHero.GetComponent<PolygonHero>().sides = 5;
-	}
+        redRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().hero = redHero;
+        blueRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().hero = blueHero;
+    }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 	}
 

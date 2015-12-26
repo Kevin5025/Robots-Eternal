@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SpawnPoint : Actuator {
     public float minionWaveInterval = 20;
+    public GameObject hero;
 
     Vector3 positionLeft;
     Vector3 positionForward;
@@ -35,6 +36,9 @@ public class SpawnPoint : Actuator {
 			minionForward.GetComponent<PolygonAgent>().sides = 3;
 			minionRight.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
 			minionRight.GetComponent<PolygonAgent>().sides = 3;
+            minionLeft.GetComponent< UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+            minionForward.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+            minionRight.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
 
             yield return new WaitForSeconds(minionWaveInterval);
         }
