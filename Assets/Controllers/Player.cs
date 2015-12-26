@@ -7,8 +7,10 @@ public class Player : MonoBehaviour {
 	public PolygonAgent agent;
 	protected Rigidbody2D rb2D;//not like anything will inherit though
 
-	public int rotateScheme;
+	public float magicTrajectoryConstant = 0.01f;//perhaps a possible upgrade
+
 	public int cameraScheme;
+	public int rotateScheme;
 
 	void Awake () {
 		if (player == null) {//like a singleton
@@ -47,27 +49,54 @@ public class Player : MonoBehaviour {
 			float targetRotation = Mathf.Atan2 (mousePosition.x - transformPosition.x, mousePosition.y - transformPosition.y) * -Mathf.Rad2Deg;//0 to 180, then -180 to 0 counterclockwise
 			float offsetRotation = (targetRotation - currentRotation) % 360;//between -360 and 360
 			
-			if (offsetRotation < 0f) {
-				offsetRotation += 360f;//between 0 and 360;
+			if (offsetRotation < -180f) {
+				offsetRotation += 360f;
+			} else if (offsetRotation > 180f) {
+				offsetRotation -= 360f;
 			}
+			//between -180 and 180, where positive is still counterclockward
 
+			//v=angularVelocity, a=angularAcceleration=alpha=torque/rotationalInertia, t=timeToDecelerate
+			//vt=d versus vt-0.5at^2=d		distance vs distance while decelerating
+			//v-at=0 => v=at => v/a=t		time to decelerate is v/a, of course
+			//vt=d => v*v/a*t=d >= offset?	see if trajected distance overshoots offset
+											//if so, then decelerate, else continue accelerating
+			//rb2D.angularVelocity*rb2D.angularVelocity/(agent.torq)
+			float trajectedRotation = magicTrajectoryConstant * Mathf.Abs(rb2D.angularVelocity) * rb2D.angularVelocity / (agent.torque / rb2D.inertia);//magic 0.01f is due to angular drag and bad calculus
+				//positive is counterclock, negative is clock
+			//Debug.Log("1:" + rb2D.angularVelocity + ", " + (agent.torque / rb2D.inertia));
+			//Debug.Log("2:" + trajectedRotation + ", " + offsetRotation);
+
+			//TODO: proactively slow down to avoid shaky
+			if (rotateScheme == 0 || rotateScheme == 1) {//TODO: consider just collapsing/cleaning it all
+				//Debug.Log("2:" + trajectedRotation + ", " + offsetRotation);
+				if (trajectedRotation < offsetRotation) {
+					//Debug.Log("left");
+					rb2D.AddTorque(agent.torque);//turn left max
+				} else {
+					//Debug.Log("right");
+					rb2D.AddTorque(-agent.torque);//turn right max
+				}
+			}
+			/*
 			if (rotateScheme == 0) {//recommended with cameraScheme == 0
 				if (offsetRotation > 0f && offsetRotation < 180f) {
 					rb2D.AddTorque (agent.torque);//turn left max
-				} else {//180-360=-180 and 360-360=0
+				} else {
 					rb2D.AddTorque (-agent.torque);//turn right max
 				}
 			} else if (rotateScheme == 1) {//recommended with cameraScheme == 1
 				if (offsetRotation > 0f && offsetRotation <= 90f) {									//(offsetRotation > 0f && offsetRotation <= 45f)
 					rb2D.AddTorque (agent.torque * offsetRotation / 90f);//turn left slowly			//(agent.torque * offsetRotation/45f)
-				} else if (offsetRotation > 270f && offsetRotation < 360f) {						//(offsetRotation > 315f && offsetRotation < 360f)
+				} else if (offsetRotation > -90f && offsetRotation < 0f) {						//(offsetRotation > 315f && offsetRotation < 360f)
 					rb2D.AddTorque (agent.torque * (offsetRotation - 360f) / 90f);//turn right slowly 	//(-agent.torque * (offsetRotation-360f)/-45f)
 				} else if (offsetRotation > 0f && offsetRotation <= 180f) {
 					rb2D.AddTorque (agent.torque);//turn left max
-				} else if (offsetRotation > 180f && offsetRotation < 360f) {
+				} else if (offsetRotation > -180f && offsetRotation < 0f) {
 					rb2D.AddTorque (-agent.torque);//turn right max
 				}
 			}
+			*/
 		} else if (rotateScheme == 2) {//highly recommended with cameraScheme == 1
 			Vector2 mousePosition = Input.mousePosition;
 			Vector2 transformPosition = Camera.main.WorldToScreenPoint (transform.position);
