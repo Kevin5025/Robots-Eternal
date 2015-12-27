@@ -1,3 +1,4 @@
-[submodule "UnitySteer"]
+[submodule "2DUnitySteer"]
 	path = Assets/Libraries/UnitySteer
-	url = https://github.com/ricardojmendez/UnitySteer.git
+	url = https://github.com/NickAtSchool/UnitySteer.git
+	branch = feature/2D_Support
