@@ -21,7 +21,7 @@ public abstract class PolygonAgentController : MonoBehaviour {
 
 	protected virtual void Follow (GameObject targetGameObject, float targetDistanceThreshold) {
 		float targetDistance = Vector2.Distance(targetGameObject.transform.position, transform.position);
-		if (targetDistance > targetDistanceThreshold || Time.time % 0.5f < 0.1f) {
+		if (targetDistance > targetDistanceThreshold || Time.time % 0.05f < 0.01f) {
 			Rotate(targetGameObject.transform.position);
 			Move(targetGameObject.transform.position);
 		} else {
