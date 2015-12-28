@@ -36,9 +36,14 @@ public class SpawnPoint : Actuator {
 			minionForward.GetComponent<PolygonAgent>().sides = 3;
 			minionRight.GetComponent<PolygonAgent>().team = GetComponent<SpawnPoint>().team;
 			minionRight.GetComponent<PolygonAgent>().sides = 3;
-            minionLeft.GetComponent< UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
-            minionForward.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
-            minionRight.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+
+			//TODO: commented out for now since triangles stopped getting shot due to breaking physics
+            //minionLeft.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+            //minionForward.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+            //minionRight.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
+
+			minionForward.AddComponent<Vassal>();
+			minionForward.GetComponent<Vassal>().lordGameObject = hero;
 
             yield return new WaitForSeconds(minionWaveInterval);
         }

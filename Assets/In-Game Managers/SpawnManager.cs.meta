@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e3531e2ff270ccc4fbc68aae34192517
-timeCreated: 1450751630
+timeCreated: 1451250667
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
@@ -9,12 +9,8 @@ MonoImporter:
       type: 2}
   - pentagonAgentGameObjectStock: {fileID: 119858, guid: 8394d5308fea94b42b9de5bb0e62ce9f,
       type: 2}
-  - triangleAgentGameObjectStock: {fileID: 197918, guid: f5fc078a51c26f149b5bf80759a3fef1,
+  - triangleAgentGameObjectStock: {fileID: 189404, guid: e2c9e7d624c96f34984b0b4ce970bbcd,
       type: 2}
-  - blueRespawnPointGameObject: {instanceID: 0}
-  - redRespawnPointGameObject: {instanceID: 0}
-  - agent1: {instanceID: 0}
-  - agent2: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -43,6 +43,7 @@ public class SpawnManager : MonoBehaviour {
 		redHero.AddComponent<PolygonHero>();
 		redHero.GetComponent<PolygonHero>().team = Actuator.Team.RED;
 		redHero.GetComponent<PolygonHero>().sides = 5;
+
         redRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().hero = redHero;
         blueRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().hero = blueHero;
     }

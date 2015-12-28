@@ -7,6 +7,8 @@ public class PolygonAgent : PolygonEntity {
 	protected float fadeTime;
 	protected float fadeTimeConstant;
 
+	public bool rightHanded;
+
 	public List<Ability> abilityList;
 
 	// Use this for initialization
@@ -25,6 +27,8 @@ public class PolygonAgent : PolygonEntity {
 
 		fadeTime = 6f;
 		fadeTimeConstant = 0.25f / fadeTime;
+
+		rightHanded = Random.value < 0.5;
 
 		abilityList = new List<Ability>();
 		abilityList.Add(new Shoot());
