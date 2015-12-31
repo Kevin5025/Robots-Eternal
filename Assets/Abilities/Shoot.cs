@@ -9,11 +9,11 @@ public class Shoot : Ability {
 	public override void Actuate (Transform casterTransform, PolygonAgent casterAgent) {
 		base.Actuate(casterTransform, casterAgent);
 
-		Vector3 head = casterTransform.TransformPoint(new Vector3(0, casterAgent.inradius));
+		Vector3 headPosition = casterTransform.TransformPoint(new Vector3(0, casterAgent.inradius));
 		Vector3 forwardPosition = casterTransform.TransformPoint(new Vector3(0, 1f));
 		Vector3 forwardDirection = forwardPosition - casterTransform.position;
 
-		GameObject projectileGameObject = (GameObject)GameObject.Instantiate(StockReferences.stockReferences.circleSmall2, head, casterTransform.rotation);
+		GameObject projectileGameObject = (GameObject)GameObject.Instantiate(StockReferences.stockReferences.circleSmall2, headPosition, casterTransform.rotation);
 		projectileGameObject.GetComponent<Rigidbody2D>().velocity = forwardDirection * casterAgent.force;//TODO: consider F=ma; v=at; t=0.05 presumably 
 
 		projectileGameObject.AddComponent<Projectile>();

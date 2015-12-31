@@ -17,16 +17,30 @@ public abstract class PolygonAgentController : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {}
 
-	protected virtual void FixedUpdate () {}
+	protected virtual void FixedUpdate () {
+		
+	}
 
 	protected virtual void Follow (GameObject targetGameObject, float targetDistanceThreshold) {
 		float targetDistance = Vector2.Distance(targetGameObject.transform.position, transform.position);
-		if (targetDistance > targetDistanceThreshold || Time.time % 0.05f < 0.01f) {
+		if (targetDistance > targetDistanceThreshold) {
+			Rotate(targetGameObject.transform.position);
+			Move(targetGameObject.transform.position);
+		} else if (targetDistance > 0.5 * targetDistanceThreshold && Time.time % 0.05f < 0.005f) {
 			Rotate(targetGameObject.transform.position);
 			Move(targetGameObject.transform.position);
 		} else {
-			Move(true, false, !agent.rightHanded, agent.rightHanded);//offhand faces outside
+			//Move(true, false, !agent.rightHanded, agent.rightHanded);//offhand faces outside
+			Wander(0.002f * agent.force / agent.GetComponent<Rigidbody2D>().mass);
 		}
+	}
+
+	protected virtual void Wander (float radius) {
+		float x = 0.5f*radius*Random.value - 0.25f*radius;
+		float y = Mathf.Sqrt(radius * radius - x * x);
+		Vector3 forwardPosition = transform.TransformPoint(new Vector3(x, y));
+		Rotate(forwardPosition);
+		Move(forwardPosition);
 	}
 
 	protected virtual void Rotate (Vector2 targetPosition) {

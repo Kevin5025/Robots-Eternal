@@ -12,6 +12,9 @@ public class Vassal : PolygonAgentController {
 	
 	protected override void FixedUpdate () {
 		base.FixedUpdate();
+		if (agent.defunct) {
+			return;
+		}
 		if (lordGameObject) {
 			Follow(lordGameObject, 3);
 		}

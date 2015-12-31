@@ -24,10 +24,10 @@ public class SpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		blueRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, -1f), Quaternion.identity));
+		blueRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(-2f, -2f), Quaternion.identity));
 		blueRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().team = Actuator.Team.BLUE;
 
-		redRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(0f, 1f), Quaternion.Euler(0, 0, 180)));
+		redRespawnPointGameObjectList.Add((GameObject)Instantiate(spawnPointGameObjectStock, new Vector2(2f, 2f), Quaternion.Euler(0, 0, 180)));
 		redRespawnPointGameObjectList[0].GetComponent<SpawnPoint>().team = Actuator.Team.RED;
         //GameObject.Find
 

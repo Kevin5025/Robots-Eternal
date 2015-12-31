@@ -42,6 +42,8 @@ public class SpawnPoint : Actuator {
             //minionForward.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
             //minionRight.GetComponent<UnitySteer2D.Behaviors.SteerForFollow>().Target = hero.transform;
 
+			//minionLeft.AddComponent
+
 			minionForward.AddComponent<Vassal>();
 			minionForward.GetComponent<Vassal>().lordGameObject = hero;
 
