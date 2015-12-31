@@ -38,33 +38,14 @@ public class Player : PolygonAgentController {
 
 		//Rotate(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 		//Move(Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
+
 		Rotate();
-		Move(cameraScheme==1);
+		Move(1f, cameraScheme==1);
 	}
 
 	void Rotate () {
 		if (rotateScheme == 0 || rotateScheme == 1) {
 			Rotate(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-			/*
-			if (rotateScheme == 0) {//recommended with cameraScheme == 0
-				if (offsetRotation > 0f && offsetRotation < 180f) {
-					rb2D.AddTorque (agent.torque);//turn left max
-				} else {
-					rb2D.AddTorque (-agent.torque);//turn right max
-				}
-			} else if (rotateScheme == 1) {//recommended with cameraScheme == 1
-				if (offsetRotation > 0f && offsetRotation <= 90f) {									//(offsetRotation > 0f && offsetRotation <= 45f)
-					rb2D.AddTorque (agent.torque * offsetRotation / 90f);//turn left slowly			//(agent.torque * offsetRotation/45f)
-				} else if (offsetRotation > -90f && offsetRotation < 0f) {						//(offsetRotation > 315f && offsetRotation < 360f)
-					rb2D.AddTorque (agent.torque * (offsetRotation - 360f) / 90f);//turn right slowly 	//(-agent.torque * (offsetRotation-360f)/-45f)
-				} else if (offsetRotation > 0f && offsetRotation <= 180f) {
-					rb2D.AddTorque (agent.torque);//turn left max
-				} else if (offsetRotation > -180f && offsetRotation < 0f) {
-					rb2D.AddTorque (-agent.torque);//turn right max
-				}
-			}
-			*/
 		} else if (rotateScheme == 2) {//highly recommended with cameraScheme == 1
 			Vector2 mousePosition = Input.mousePosition;
 			Vector2 transformPosition = Camera.main.WorldToScreenPoint (transform.position);
@@ -80,8 +61,8 @@ public class Player : PolygonAgentController {
 		}
 	}
 
-	void Move (bool relative) {
-		Move(Input.GetKey (KeyCode.W), Input.GetKey (KeyCode.S), Input.GetKey (KeyCode.A), Input.GetKey (KeyCode.D), relative);
+	void Move (float power, bool relative) {
+		Move(Input.GetKey (KeyCode.W), Input.GetKey (KeyCode.S), Input.GetKey (KeyCode.A), Input.GetKey (KeyCode.D), power, relative);
 	}
 
 	void Fire () {
