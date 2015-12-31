@@ -12,7 +12,7 @@ public class ResourceBar : MonoBehaviour {
 	void Start () {
         healthBarWidth = targetEntity.maxHealth / 115;//TODO: consider LoL style
 		healthBarContainerTransform = transform.parent;//or I could just assign in Editor
-		healthBarContainerTransform.SetParent(HUDManager.hUDManager.hUDCanvas.transform);
+		healthBarContainerTransform.SetParent(HUDManager.hUDManager.healthBarCanvas.transform);
 		healthBarContainerTransform.localScale = new Vector3 (healthBarWidth, 1f, 1f);
 	}
 	

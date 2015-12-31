@@ -31,28 +31,30 @@ public abstract class PolygonAgentController : MonoBehaviour {
 		if (targetDistance > targetDistanceThreshold) {
 			Rotate(targetGameObject.transform.position);
 			Move(targetGameObject.transform.position);
-		} else if (targetDistance > 0.5 * targetDistanceThreshold && Time.time % 0.1f < 0.02f) {
-			wanderX += 0.1f * wanderRadius * Mathf.Sign(transform.InverseTransformPoint(targetGameObject.transform.position).x);
-			Wander(0.5f);
 		} else {
+			if (targetDistance > 0.6f * targetDistanceThreshold && Time.time % 0.1f < 0.04f) {
+				wanderX += 0.1f * wanderRadius * Mathf.Sign(transform.InverseTransformPoint(targetGameObject.transform.position).x);
+			} else if (targetDistance < 0.25 * targetDistanceThreshold && Time.time % 0.1f < 0.02f) {
+				wanderX -= 0.05f * wanderRadius * Mathf.Sign(transform.InverseTransformPoint(targetGameObject.transform.position).x);
+			}
+			Wander(0.7f, 0.5f);
 			//Move(true, false, !agent.rightHanded, agent.rightHanded);//offhand faces outside
-			Wander(0.5f);
 		}
 	}
 
-	protected virtual void Wander (float power = 1f) {
+	protected virtual void Wander (float rotatePower = 1f, float movePower = 1f) {
 		wanderX -= 0.2f * wanderX;
 		wanderX += 0.1f * wanderRadius * (Random.value + Random.value - 1f);
 
 		float wanderY = Mathf.Sqrt(wanderRadius * wanderRadius - wanderX * wanderX);
 		Vector3 forwardPosition = transform.TransformPoint(new Vector3(wanderX, wanderY));
-		Rotate(forwardPosition, power);
-		Move(forwardPosition, power);
+		Rotate(forwardPosition, rotatePower);
+		Move(forwardPosition, movePower);
 	}
 
 	protected virtual void Rotate (Vector2 targetPosition, float power = 1f) {
 		float currentRotation = transform.eulerAngles.z;
-		float trajectedChangeInRotation = 0.5f * Time.fixedDeltaTime * Mathf.Abs(rb2D.angularVelocity) * rb2D.angularVelocity / (agent.torque / rb2D.inertia);//magic 0.5f is due to angular drag
+		float trajectedChangeInRotation = 0.5f * Time.fixedDeltaTime * Mathf.Abs(rb2D.angularVelocity) * rb2D.angularVelocity / (power * agent.torque / rb2D.inertia);//magic 0.5f is due to angular drag
 		float trajectedRotation = currentRotation + trajectedChangeInRotation;
 		//v=angularVelocity, a=angularAcceleration=alpha=torque/rotationalInertia, t=timeToDecelerate
 		//vt=d versus vt-0.5at^2=d		distance vs distance while decelerating
@@ -78,7 +80,7 @@ public abstract class PolygonAgentController : MonoBehaviour {
 
 	protected virtual void Move (Vector2 targetPosition, float power = 1f, bool relative = true) {
 		Vector2 currentPosition = transform.position;
-		Vector2 trajectedChangeInPosition = 40f * Time.fixedDeltaTime * new Vector2(Mathf.Abs(rb2D.velocity.x) * rb2D.velocity.x, Mathf.Abs(rb2D.velocity.y) * rb2D.velocity.y) / (agent.force / rb2D.mass);//magic 0.5f is due to linear drag
+		Vector2 trajectedChangeInPosition = 40f * Time.fixedDeltaTime * new Vector2(Mathf.Abs(rb2D.velocity.x) * rb2D.velocity.x, Mathf.Abs(rb2D.velocity.y) * rb2D.velocity.y) / (power * agent.force / rb2D.mass);//magic 0.5f is due to linear drag
 		Vector2 trajectedPosition = currentPosition + trajectedChangeInPosition;
 		//vt=d => v*v/a*t=d >= offset?	see if trajected distance overshoots offset
 		//if so, then decelerate, else continue accelerating
