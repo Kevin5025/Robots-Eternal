@@ -1,0 +1,234 @@
+[
+	{
+		"id": 0,
+		"title": "Bronze Shovel",
+		"types": ["right hand", "melee", "pickaxe"],
+		"value": 3,
+		"stats": {
+			"mechanicalWeapon": 10,
+			"mechanicalArmor": 0,
+			"cooldown": 1,
+			"utility": 1,
+			"range": 2
+		}
+	},
+	{
+		"id": 1,
+		"title": "Silver Shovel",
+		"types": ["right hand", "melee", "pickaxe"],
+		"value": 13,
+		"stats": {
+			"mechanicalWeapon": 14,
+			"mechanicalArmor": 0,
+			"cooldown": 1,
+			"utility": 3,
+			"range": 2
+		}
+	},
+	{
+		"id": 2,
+		"title": "Gold Shovel",
+		"types": ["right hand", "melee", "pickaxe"],
+		"value": 55,
+		"stats": {
+			"mechanicalWeapon": 18,
+			"mechanicalArmor": 0,
+			"cooldown": 1,
+			"utility": 8,
+			"range": 2
+		}
+	},
+	{
+		"id": 3,
+		"title": "Platinum Shovel",
+		"types": ["right hand", "melee", "pickaxe"],
+		"value": 233,
+		"stats": {
+			"mechanicalWeapon": 22,
+			"mechanicalArmor": 0,
+			"cooldown": 1,
+			"utility": 21,
+			"range": 2
+		}
+	},
+	{
+		"id": 4,
+		"title": "Bronze Sword",
+		"types": ["right hand", "melee"],
+		"value": 3,
+		"stats": {
+			"mechanicalWeapon": 17,
+			"mechanicalArmor": 0,
+			"cooldown": 0.8,
+			"utility": 0,
+			"range": 1.6
+		}
+	},
+	{
+		"id": 5,
+		"title": "Silver Sword",
+		"types": ["right hand", "melee"],
+		"value": 13,
+		"stats": {
+			"mechanicalWeapon": 23,
+			"mechanicalArmor": 0,
+			"cooldown": 0.8,
+			"utility": 0,
+			"range": 1.6
+		}
+	},
+	{
+		"id": 6,
+		"title": "Gold Sword",
+		"types": ["right hand", "melee"],
+		"value": 55,
+		"stats": {
+			"mechanicalWeapon": 29,
+			"mechanicalArmor": 0,
+			"cooldown": 0.8,
+			"utility": 0,
+			"range": 1.6
+		}
+	},
+	{
+		"id": 7,
+		"title": "Platinum Sword",
+		"types": ["right hand", "melee"],
+		"value": 233,
+		"stats": {
+			"mechanicalWeapon": 35,
+			"mechanicalArmor": 0,
+			"cooldown": 0.8,
+			"utility": 0,
+			"range": 1.6
+		}
+	},
+	{
+		"id": 8,
+		"title": "Bronze Platebody",
+		"types": ["torso"],
+		"value": 3,
+		"stats": {
+			"mechanicalWeapon": 0,
+			"mechanicalArmor": 13,
+			"cooldown": 2.4,
+			"utility": 0,
+			"range": 1
+		}
+	},
+	{
+		"id": 9,
+		"title": "Silver Platebody",
+		"types": ["torso"],
+		"value": 13,
+		"stats": {
+			"mechanicalWeapon": 0,
+			"mechanicalArmor": 34,
+			"cooldown": 2.4,
+			"utility": 0,
+			"range": 1
+		}
+	},
+	{
+		"id": 10,
+		"title": "Gold Platebody",
+		"types": ["torso"],
+		"value": 55,
+		"stats": {
+			"mechanicalWeapon": 0,
+			"mechanicalArmor": 89,
+			"cooldown": 2.4,
+			"utility": 0,
+			"range": 1
+		}
+	},
+	{
+		"id": 11,
+		"title": "Platinum Platebody",
+		"types": ["torso"],
+		"value": 233,
+		"stats": {
+			"mechanicalWeapon": 0,
+			"mechanicalArmor": 233,
+			"cooldown": 2.4,
+			"utility": 0,
+			"range": 1
+		}
+	},
+	{
+		"id": 8,
+		"title": "Bronze Shield",
+		"types": ["left hand", "shield"],
+		"value": 3,
+		"stats": {
+			"mechanicalWeapon": 0,
+			"mechanicalArmor": 13,
+			"cooldown": 2.4,
+			"utility": 7,
+			"range": 0.5
+		}
+	},
+	{
+		"id": 9,
+		"title": "Silver Shield",
+		"types": ["left hand", "shield"],
+		"value": 13,
+		"stats": {
+			"mechanicalWeapon": 1,
+			"mechanicalArmor": 21,
+			"cooldown": 2.4,
+			"utility": 11,
+			"range": 0.5
+		}
+	},
+	{
+		"id": 10,
+		"title": "Gold Shield",
+		"types": ["left hand", "shield"],
+		"value": 55,
+		"stats": {
+			"mechanicalWeapon": 1,
+			"mechanicalArmor": 34,
+			"cooldown": 2.4,
+			"utility": 15,
+			"range": 0.5
+		}
+	},
+	{
+		"id": 11,
+		"title": "Platinum Shield",
+		"types": ["left hand", "shield"],
+		"value": 233,
+		"stats": {
+			"mechanicalWeapon": 2,
+			"mechanicalArmor": 55,
+			"cooldown": 2.4,
+			"utility": 19,
+			"range": 0.5
+		}
+	},
+	{
+		"id": 12,
+		"title": "Bronze Ore",
+		"types": ["stackable", "drop on death"],
+		"value": 1,
+	},
+	{
+		"id": 13,
+		"title": "Silver Ore",
+		"types": ["stackable", "drop on death"],
+		"value": 4,
+	},
+	{
+		"id": 14,
+		"title": "Gold Ore",
+		"types": ["stackable", "drop on death"],
+		"value": 9,
+	},
+	{
+		"id": 15,
+		"title": "Platinum Ore",
+		"types": ["stackable", "drop on death"],
+		"value": 16,
+	},
+]

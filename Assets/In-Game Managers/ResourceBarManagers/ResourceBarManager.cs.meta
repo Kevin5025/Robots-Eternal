@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 271b8d685bde173419b2a0c970a47e26
+timeCreated: 1492194811
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - resourceBarCanvasGameObject: {fileID: 119022, guid: 90860b4a6f1feea479c07ff730d7c80b,
+      type: 2}
+  - healthBarContainerPrefab: {fileID: 156498, guid: 04dfa33e6a9d94e45b0a736558f47f6b,
+      type: 2}
+  - experienceBarContainerPrefab: {fileID: 1617858857338462, guid: 82962d73e12b6694b9dff9f1df053979,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

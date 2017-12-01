@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
 
+/**
+ * This is anything that is functional enough to have a team affiliation. 
+ */
 public abstract class Actuator : MonoBehaviour {
 
-    public enum Team { BLUE, RED };
+    public enum Team { RED, GREEN, BLUE, YELLOW, MAGENTA, CYAN, BROWN, NONE };//TODO: GREY for zombies
     public Team team;
 
     protected SpriteRenderer spriteRenderer;
@@ -13,16 +15,12 @@ public abstract class Actuator : MonoBehaviour {
 
     }
 
-	// Use this for initialization
+	/**
+     * Assign sprite color based on team. 
+     */
     protected virtual void Start() {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        if (team == Team.BLUE) {
-            //spriteRenderer.color = new Color(0f, 0f, 1f);
-            spriteRenderer.color = new Color(0, 0, spriteRenderer.color.b);
-        } else if (team == Team.RED) {
-            //spriteRenderer.color = new Color(1f, 0f, 0f);
-            spriteRenderer.color = new Color(spriteRenderer.color.r, 0, 0);
-        }
+        spriteRenderer.color = GetTeamColor(spriteRenderer.color, team);
         r = spriteRenderer.color.r; g = spriteRenderer.color.g; b = spriteRenderer.color.b;
 	}
 	
@@ -33,5 +31,35 @@ public abstract class Actuator : MonoBehaviour {
 
     protected virtual void FixedUpdate() {
 
+    }
+
+    public Color GetTeamColor (Color color, Team team) {
+        if (team == Team.RED) {
+            return new Color(color.r, 0, 0);
+        } else if (team == Team.GREEN) {
+            return new Color(0, color.g, 0);
+        } else if (team == Team.BLUE) {
+            return new Color(0, 0, color.b);
+        } else if (team == Team.YELLOW) {
+            return new Color(color.r, color.g, 0);
+        } else if (team == Team.MAGENTA) {
+            return new Color(color.r, 0, color.b);
+        } else if (team == Team.CYAN) {
+            return new Color(0, color.g, color.b);
+        } else if (team == Team.BROWN) {//saddle brown = (139,69,19)/256
+            return new Color(139f/255f * color.r, 69f/255f * color.g, 19f/255f * color.b);
+        } else {
+            return color;
+        }
+    }
+
+    public Team GetOpponentTeam (Team team) {
+        if (team == Team.BLUE) {
+            return Team.RED;
+        } else if (team == Team.RED) {
+            return Team.BLUE;
+        } else {
+            return Team.NONE;
+        }
     }
 }

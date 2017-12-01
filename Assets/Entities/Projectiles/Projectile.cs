@@ -1,50 +1,51 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Projectile : Entity {
 
-	private float mechanicalDamage;
-	private float timer;
+    public CircleAgent casterAgent;//set by casterAgent
 
-	protected override void Awake () {
-		base.Awake();
-		GetComponent<CircleCollider2D>().enabled = false;
-	}
+    public float mechanicalDamage;
+    protected float timer;
 
-	// Use this for initialization
-	protected override void Start () {
-		displayHealthBarContainerGameObject = false;
-		base.Start();
+    protected override void Awake () {
+        base.Awake();
+        GetComponent<CircleCollider2D>().enabled = false;
+    }
 
-		gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "Projectiles";
+    // Use this for initialization
+    protected override void Start () {
+        displayHealthBarContainerGameObject = false;
+        base.Start();
 
-		if (team == Team.BLUE) {
-			gameObject.layer = LayersManager.layersManager.blueProjectileLayer;
-		} else if (team == Team.RED) {
-			gameObject.layer = LayersManager.layersManager.redProjectileLayer;
-		}
+        GetComponent<SpriteRenderer>().sortingLayerName = "Projectiles";
+        gameObject.layer = LayersManager.layersManager.getTeamProjectileLayer(team);
 
-		maxHealth = 1f;
-		health = maxHealth;
-		mechanicalDamage = 10f;
-		timer = 1f;
-		GetComponent<CircleCollider2D>().enabled = true;
-	}
+        maxHealth = 1f;
+        health = maxHealth;
+        timer = 0.75f;
+        GetComponent<CircleCollider2D>().enabled = true;
+    }
 
-	// Update is called once per frame
-	protected override void Update () {
-		base.Update();
-		timer -= Time.deltaTime;
-		if (timer <= 0 || health <= 0) {
-			Expire();
-		}
-	}
+    /**
+     * Projectiles have a limited range and duration
+     */
+    protected override void Update () {
+        base.Update();
+        timer -= Time.deltaTime;
+        if (timer <= 0 || health <= 0) {
+            Expire();
+        }
+    }
 
-	void OnCollisionEnter2D (Collision2D collision) {
-		Entity collisionGameObjectEntity = collision.gameObject.GetComponent<Entity>();
-		if (collisionGameObjectEntity != null) {
-			collisionGameObjectEntity.takeDiscreteDamage(mechanicalDamage);
-			Expire();
-		}
-	}
+    /**
+     * Damages enemies upon impact. 
+     */
+    void OnCollisionEnter2D (Collision2D collision) {
+        Entity collisionGameObjectEntity = collision.gameObject.GetComponent<Entity>();
+        if (collisionGameObjectEntity != null) {
+            collisionGameObjectEntity.takeDiscreteDamage(casterAgent, mechanicalDamage);
+            Expire();
+        }
+    }
+
 }

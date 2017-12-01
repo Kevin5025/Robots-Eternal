@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Manages collisions. 
+ */
 public class LayersManager : MonoBehaviour {
 
 	public static LayersManager layersManager;
@@ -9,8 +12,10 @@ public class LayersManager : MonoBehaviour {
 	public int blueProjectileLayer;
 	public int redAgentLayer;
 	public int redProjectileLayer;
+    public int brownAgentLayer;
+    public int brownProjectileLayer;
 
-	public int wallVisionLayer;
+    public int wallVisionLayer;
 	public int wallProjectileLayer;
 	public int wallAgentLayer;
 	public int wallLayer;
@@ -24,12 +29,16 @@ public class LayersManager : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
+	/**
+     * No friendly fire
+     */
 	void Start () {
 		blueAgentLayer = 8;
 		blueProjectileLayer = 9;
 		redAgentLayer = 10;
-		redAgentLayer = 11;
+		redProjectileLayer = 11;
+        brownAgentLayer = 12;
+        brownProjectileLayer = 13;
 
 		wallVisionLayer = 28;
 		wallProjectileLayer = 29;
@@ -46,6 +55,11 @@ public class LayersManager : MonoBehaviour {
         Physics2D.IgnoreLayerCollision (redAgentLayer, redProjectileLayer, true);
         Physics2D.IgnoreLayerCollision (redProjectileLayer, redProjectileLayer, true);
 
+        //brown
+        Physics2D.IgnoreLayerCollision(brownAgentLayer, brownAgentLayer, true);
+        Physics2D.IgnoreLayerCollision(brownAgentLayer, brownProjectileLayer, true);
+        Physics2D.IgnoreLayerCollision(brownProjectileLayer, brownProjectileLayer, true);
+
         //wall
         Physics2D.IgnoreLayerCollision (wallAgentLayer, blueAgentLayer, true);
         Physics2D.IgnoreLayerCollision (wallAgentLayer, redAgentLayer, true);
@@ -57,4 +71,28 @@ public class LayersManager : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public int getTeamAgentLayer(Actuator.Team team) {
+        if (team == Actuator.Team.BLUE) {
+            return blueAgentLayer;
+        } else if (team == Actuator.Team.RED) {
+            return redAgentLayer;
+        } else if (team == Actuator.Team.BROWN) {
+            return brownAgentLayer;
+        } else {
+            return -1;
+        }
+    }
+
+    public int getTeamProjectileLayer(Actuator.Team team) {
+        if (team == Actuator.Team.BLUE) {
+            return blueProjectileLayer;
+        } else if (team == Actuator.Team.RED) {
+            return redProjectileLayer;
+        } else if (team == Actuator.Team.BROWN) {
+            return brownProjectileLayer;
+        } else {
+            return -1;
+        }
+    }
 }

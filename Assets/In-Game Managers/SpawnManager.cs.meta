@@ -1,15 +1,15 @@
 fileFormatVersion: 2
 guid: e3531e2ff270ccc4fbc68aae34192517
-timeCreated: 1451250667
+timeCreated: 1491801113
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - spawnPointGameObjectStock: {fileID: 188806, guid: c2facddafa63f9a408bffd27a256a475,
+  - spawnPointGameObjectPrefab: {fileID: 188806, guid: c2facddafa63f9a408bffd27a256a475,
       type: 2}
-  - pentagonAgentGameObjectStock: {fileID: 119858, guid: 8394d5308fea94b42b9de5bb0e62ce9f,
+  - circleAgentGameObjectPrefab: {fileID: 1909283031298534, guid: b4e8a9d2fa41b26409ff4dbc53c5b91f,
       type: 2}
-  - triangleAgentGameObjectStock: {fileID: 189404, guid: e2c9e7d624c96f34984b0b4ce970bbcd,
+  - circleAgentGameObjectPrefab2: {fileID: 1065479808256480, guid: f7aa010a75ee6b24f87bb6a627dfeb48,
       type: 2}
   executionOrder: 0
   icon: {instanceID: 0}

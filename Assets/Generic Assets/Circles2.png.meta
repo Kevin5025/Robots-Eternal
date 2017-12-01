@@ -7,12 +7,12 @@ TextureImporter:
     21300000: Circles2_0
     21300002: Circles2_1
     21300004: Circles2_2
-  serializedVersion: 2
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapFadeDistanceStart: 1
@@ -24,10 +24,8 @@ TextureImporter:
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
-  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
   maxTextureSize: 2048
@@ -38,9 +36,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
-  rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
@@ -48,12 +44,36 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Circles2_0
+    - serializedVersion: 2
+      name: Circles2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -63,16 +83,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -2.5, y: 6.5}
-        - {x: -6.5, y: 2.5}
-        - {x: -6.5, y: -2.5}
-        - {x: -2.5, y: -6.5}
-        - {x: 2.5, y: -6.5}
-        - {x: 6.5, y: -2.5}
-        - {x: 6.5, y: 2.5}
-        - {x: 2.5, y: 6.5}
-    - name: Circles2_1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Circles2_1
       rect:
         serializedVersion: 2
         x: 0
@@ -82,19 +96,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -10.5, y: 16.5}
-        - {x: -12.5, y: 15.5}
-        - {x: -16.5, y: 9.5}
-        - {x: -16.5, y: -6.5}
-        - {x: -15.5, y: -12.5}
-        - {x: -9.5, y: -16.5}
-        - {x: 5.5, y: -16.5}
-        - {x: 12.5, y: -15.5}
-        - {x: 16.5, y: -13.5}
-        - {x: 16.5, y: 10.5}
-        - {x: 13.5, y: 16.5}
-    - name: Circles2_2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Circles2_2
       rect:
         serializedVersion: 2
         x: 0
@@ -104,13 +109,8 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -49.5, y: 49.5}
-        - {x: -49.5, y: -49.5}
-        - {x: 35.5, y: -49.5}
-        - {x: 49.5, y: -44.5}
-        - {x: 49.5, y: 37.5}
-        - {x: 32.5, y: 49.5}
+      outline: []
+      tessellationDetail: -1
     outline: []
   spritePackingTag: 
   userData: 
