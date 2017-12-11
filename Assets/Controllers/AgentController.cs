@@ -13,7 +13,7 @@ public abstract class AgentController : MonoBehaviour {
 
     public GameObject closestHostileAgentGameObject;
 
-    public Vector2 targetPosition;//TODO protected
+    public Vector2 targetPosition;
     protected Stack<int> pathToTargetIndexX;//updates according to targetPosition every handful of moments
     protected Stack<int> pathToTargetIndexY;
     private int nextNodeToTargetIndexX;
@@ -83,6 +83,9 @@ public abstract class AgentController : MonoBehaviour {
         }
     }
 
+	/**
+     * Same as Hunt() except for the line marked with "//cautiousness"
+     */
     protected virtual void CautiousHunt (Vector2 targetPosition) {
         if (closestHostileAgentGameObject != null) {
             float distance = MyStaticLibrary.GetDistance(agent.transform.position, closestHostileAgentGameObject.transform.position);
